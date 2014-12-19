@@ -2,12 +2,9 @@ Aihe: Tavoite en tehdä pong peli, jossa neliskulmion muotoisella alustalla kaks
 
 Käyttäjät: Kuka tahansa.
 
-Kaikkien käyttäjien toiminnot: 
+Kaikkien käyttäjien toiminnot: Pelata pong peliä.
 
-Pelata pong peliä.
-
- Peliä pelatessa:
-liikuttaa peli alustaa.	
+ Peliä pelatessa: liikuttaa peli alustaa.	
 
 (Mahdollisia lisä ominaisuuksia:
 Valita nimi, valita peli alusta jne.)
