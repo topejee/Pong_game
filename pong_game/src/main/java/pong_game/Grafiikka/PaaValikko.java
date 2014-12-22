@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Oliot;
+package pong_game.Grafiikka;
+
+import java.awt.Color;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Tommi
  */
-public class Pallo {
+public class PaaValikko extends JFrame {
 
-    private int x;
-
-    public Pallo(int x) {
-        this.x = x;
-    }
-    public int reInt(){
-        return x;
+    public PaaValikko() {
+        getContentPane().setBackground(Color.white);
     }
 }

@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Grafiikka;
-
-import java.awt.Color;
-import javax.swing.JFrame;
+package pong_game.logiikka;
 
 /**
  *
  * @author Tommi
  */
-public class PaaValikko extends JFrame {
-
-    public PaaValikko() {
-        getContentPane().setBackground(Color.white);
-    }
+public class Testi {
+    
 }
