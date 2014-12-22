@@ -1,7 +1,7 @@
 12.19.2014:
 
-Mitä tein:
-Tein ohjelmoinnin harjoitustyön abstraktin. Luin ohjeet ja tein vaadittavat asiat.   
+MitÃ¤ tein:
+Tein ohjelmoinnin harjoitustyÃ¶n abstraktin. Luin ohjeet ja tein vaadittavat asiat.   
 
 Kulunut Aika:
-Ohjeiden lukemisessa, luennolla käymisessä ja valmisteluiden teossa meni noin 5h.
+Ohjeiden lukemisessa, luennolla kÃ¤ymisessÃ¤ ja valmisteluiden teossa meni noin 5h.
