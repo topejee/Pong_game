@@ -1,7 +1,5 @@
 package pong_game.Oliot;
 
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,7 +34,7 @@ public class PalloTest {
 
     @Before
     public void setUp() {
-        pallo = new Pallo(5);
+        pallo = new Pallo();
     }
 
     @After
@@ -45,6 +43,29 @@ public class PalloTest {
 
     @Test
     public void onkoPallonIntOikea() {
-        assertEquals(5, pallo.reInt());
+        assertEquals(5, pallo.reKoko());
+    }
+
+    @Test
+    public void onkoPallonNopeusOikea() {
+        assertEquals(10, pallo.reNopeus());
+    }
+
+    @Test
+    public void meneekoPallonNopeusAlleNollan() {
+        pallo.kasvataNopeutta(-20);
+        assertEquals(0, pallo.reNopeus());
+    }
+
+    @Test
+    public void meneekoPallonKokoAlleNollan() {
+        pallo.kasvataKokoa(-20);
+        assertEquals(0, pallo.reKoko());
+    }
+
+    @Test
+    public void kasvaakoPallonKoonArvo() {
+        pallo.kasvataKokoa(10);
+        assertEquals(15, pallo.reKoko());
     }
 }

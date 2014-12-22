@@ -10,5 +10,5 @@ package pong_game.logiikka;
  * @author Tommi
  */
 public class Testi {
-    
+
 }

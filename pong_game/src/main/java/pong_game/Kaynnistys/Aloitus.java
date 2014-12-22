@@ -5,11 +5,11 @@ package pong_game.Kaynnistys;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Tommi
  */
+import javax.swing.SwingUtilities;
 import pong_game.Grafiikka.PaaValikko;
 
 public class Aloitus {

@@ -11,12 +11,34 @@ package pong_game.Oliot;
  */
 public class Pallo {
 
-    private int x;
+    private int koko;
+    private int nopeus;
 
-    public Pallo(int x) {
-        this.x = x;
+    public Pallo() {
+        this.koko = 5;
+        this.nopeus = 10;
     }
-    public int reInt(){
-        return x;
+
+    public int reKoko() {
+        return koko;
     }
+
+    public int reNopeus() {
+        return nopeus;
+    }
+
+    public void kasvataNopeutta(int maara) {
+        nopeus += maara;
+        if (nopeus < 0) {
+            nopeus = 0;
+        }
+    }
+
+    public void kasvataKokoa(int maara) {
+        koko += maara;
+        if (koko < 0) {
+            koko = 0;
+        }
+    }
+
 }
