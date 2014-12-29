@@ -9,8 +9,6 @@ package pong_game.Kaynnistys;
  *
  * @author Tommi
  */
-
-import javax.swing.SwingUtilities;
 import pong_game.Grafiikka.Paavalikko2;
 
 import pong_game.Oliot.Pallo;
@@ -18,11 +16,15 @@ import pong_game.Oliot.Maila;
 
 public class Aloitus {
 
+    /**
+     * Tekee pelissä käytettävät mailat ja pallon, sekä käynnistää Päävalikon
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Pallo pallo = new Pallo();
         Maila pelaaja_yksi = new Maila();
         Maila pelaaja_kaksi = new Maila();
-     //   PaaValikko paaValikko = new PaaValikko(pelaaja_yksi, pelaaja_kaksi, pallo);
         new Paavalikko2(pelaaja_yksi, pelaaja_kaksi, pallo).setVisible(true);
     }
 }

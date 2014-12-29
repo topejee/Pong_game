@@ -42,19 +42,19 @@ public class PalloTest {
     }
 
     @Test
-    public void onkoPallonIntOikea() {
-        assertEquals(5, pallo.reKoko());
+    public void onkoPallonKokoOikea() {
+        assertEquals(20, pallo.reKoko());
     }
 
     @Test
     public void onkoPallonNopeusOikea() {
-        assertEquals(10, pallo.reNopeus());
+        assertEquals(2, pallo.reNopeusX());
     }
 
     @Test
     public void meneekoPallonNopeusAlleNollan() {
         pallo.kasvataNopeutta(-20);
-        assertEquals(0, pallo.reNopeus());
+        assertEquals(0, pallo.reNopeusX());
     }
 
     @Test
@@ -66,6 +66,24 @@ public class PalloTest {
     @Test
     public void kasvaakoPallonKoonArvo() {
         pallo.kasvataKokoa(10);
-        assertEquals(15, pallo.reKoko());
+        assertEquals(30, pallo.reKoko());
     }
+
+    @Test
+    public void palautaPeliLautaLeveys() {
+
+        assertEquals(800, pallo.rePeLev());
+    }
+
+    @Test
+    public void palautaPeliLautaKorkeus() {
+
+        assertEquals(600, pallo.rePeKor());
+    }
+
+    @Test
+    public void palautaPistemaara() {
+        assertEquals(5, pallo.rePistemaara());
+    }
+
 }

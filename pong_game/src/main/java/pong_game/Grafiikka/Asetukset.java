@@ -39,6 +39,12 @@ public class Asetukset extends JFrame {
     private Maila kaksi;
 
     //  @Override
+    /**
+     *
+     * @param yksi on vasemman puolinen maila
+     * @param kaksi on oikean puolinen maila
+     * @param pallo on pelissä oleva pallo
+     */
     public Asetukset(Maila yksi, Maila kaksi, Pallo pallo) {
         this.yksi = yksi;
         this.kaksi = kaksi;
@@ -57,6 +63,12 @@ public class Asetukset extends JFrame {
         frame.setVisible(true);
     }
 
+    /**
+     * Tehdään Asetukset Luokka missä on nappulat ym. Käyttämällä monia
+     * metodeita
+     *
+     * @param container säilö, missä on näppäimet ym.
+     */
     private void luoKomponentit(Container container) {
         GridLayout layout = new GridLayout(3, 6);
         container.setLayout(layout);
@@ -64,6 +76,11 @@ public class Asetukset extends JFrame {
         nappaimet();
     }
 
+    /**
+     * Metodi tekee Asetukset luokalle uuden Klikkaustenkuuntelijan, jonka
+     * avulla saadan aikaan Asetukset luokan nappulat ym. toiminnallisuudet
+     * aikaan.
+     */
     public void nappaimet() {
         KlikkaustenKuuntelijaAsetukset kopioija = new KlikkaustenKuuntelijaAsetukset(pallonNopeus, pallonNopeusTeksti, mailanNopeus, mailanNopeusTeksti, pistemaara, pistemaaraTeksti, paavalikko, lopeta, frame, yksi, kaksi, pallo);
         paavalikko.addActionListener(kopioija);
@@ -77,6 +94,13 @@ public class Asetukset extends JFrame {
         return frame;
     }
 
+    /**
+     * Medodissa luodaan valikkoon kuuluvat nappulat, sekä teksti alueet.
+     * nappulat, sekä teksti alueet nimetään. Tämän jälkeen nappulat sekä teksti
+     * alueet lisätään paneeliin
+     *
+     * @return palauttaa paneelin
+     */
     private JPanel luoValikko() {
         JPanel panel = new JPanel(new GridLayout(4, 2));
         paavalikko = new JButton("Palaa päävalikkoon");
@@ -84,6 +108,7 @@ public class Asetukset extends JFrame {
         mailanNopeus = new JButton("Mailan nopeus");
         pistemaara = new JButton("Pistemaara");
         lopeta = new JButton("Lopeta");
+        lopeta.setText("testi");
         pallonNopeusTeksti = new JTextField();
         pallonNopeusTeksti.setText(pallo.reNopeusX() + "");
         mailanNopeusTeksti = new JTextField();

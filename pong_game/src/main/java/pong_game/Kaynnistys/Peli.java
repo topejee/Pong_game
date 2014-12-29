@@ -11,6 +11,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -18,7 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import pong_game.AI.AI;
-import pong_game.AI.BossAI;
 import pong_game.AI.HelppoAI;
 import pong_game.AI.VaikeaAI;
 import pong_game.Oliot.Maila;
@@ -40,17 +40,27 @@ public class Peli extends Canvas implements Runnable {
     private BufferedImage kuva;
     private AI AI;
 
+    /**
+     * Alustetaan peli, eli tehdään JFrame, AI, nappaimet, alustetaan mailojen
+     * aloitus paikka
+     *
+     * @param yksi pelin vasen maila
+     * @param kaksi pelin oikea maila
+     * @param pallo pelissä oleva pallo
+     */
     public Peli(Maila yksi, Maila kaksi, Pallo pallo) {
         this.pallo = pallo;
         this.yksi = yksi;
         this.kaksi = kaksi;
         frame = new JFrame();
         peliLauta = new Dimension(pallo.rePeLev() + 15, pallo.rePeKor() + 47);
+        frame.setAutoRequestFocus(true);
         frame.setMinimumSize(peliLauta);
         frame.setPreferredSize(peliLauta);
-        //      frame.setMaximumSize(peliLauta);
+        frame.setMaximumSize(peliLauta);
         frame.add(this, BorderLayout.CENTER);
         frame.pack();
+
         frame.setResizable(true);
         frame.setTitle("Pong game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,10 +73,22 @@ public class Peli extends Canvas implements Runnable {
         kaksi.setX(pallo.rePeLev() - kaksi.reLeveys());
         kaksi.setY(pallo.rePeKor() / 2);
         //   kaksi.setMailanKorkeus(200);
-
-        AI = new BossAI(kaksi, this);
+        this.requestFocus();
+        AI = new VaikeaAI(kaksi, this);
     }
 
+    /**
+     * Metodi on itse pelin toiminnallisuus. metodissa kutstuaan AI:ta tekemään
+     * siirtonsa ja liikutetaan palloa, sekä mailoja. jonka jälkeen kutsutaan
+     * piirrä metodia
+     *
+     * @see piirra()
+     *
+     * Lisäksi jos pistemäärä saavutetaan kutsutaan metodia joka piirtää tekstin
+     * jossa on tieto kuka on voittanut pelin
+     *
+     * @see voittaja(String)
+     */
     @Override
     public void run() {
         while (true) {
@@ -92,10 +114,17 @@ public class Peli extends Canvas implements Runnable {
 
     }
 
+    /**
+     * aloittaa pelin
+     */
     public void aloita() {
         new Thread(this).start();
     }
 
+    /**
+     * Piirtää pelissä olevat asiat. Eli mailat, pallon, keskiviivan, sekä
+     * tekstin joka kertoo piste tilanteen
+     */
     public void piirra() {
         BufferStrategy kuvaa = getBufferStrategy();
         if (kuvaa == null) {
@@ -115,6 +144,12 @@ public class Peli extends Canvas implements Runnable {
         kuvaa.show();
     }
 
+    /**
+     * Metodi piirtää näkyviin tekstin, jossa kerrotaan voittaja.
+     *
+     * @param x Teksti jossa kerrotaan voittaja. Teksti saadan run metodista kun
+     * peli on loppunut
+     */
     public void voittaja(String x) {
         BufferStrategy kuvaa = getBufferStrategy();
         if (kuvaa == null) {

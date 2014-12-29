@@ -22,6 +22,13 @@ public class peliNappaimet implements KeyListener {
     private Maila kaksi;
     private Pallo pallo;
 
+    /**
+     *
+     * @param yksi vasemman puoleinen maila
+     * @param kaksi oikean puoleinen maila
+     * @param pallo pelissä oleva pallo
+     * @param peli pelattava peli
+     */
     public peliNappaimet(Maila yksi, Maila kaksi, Pallo pallo, Peli peli) {
         this.yksi = yksi;
         this.kaksi = kaksi;
@@ -34,24 +41,29 @@ public class peliNappaimet implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) { 
+    public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Liikuttaa ihmis pelajaan mailaa ylös/alas riippuen siitä onko painettu
+     * ylös(w) vai alas(a)
+     *
+     * @param e klikattu näppäin
+     */
     @Override
     public void keyPressed(KeyEvent e) {
-       
+
         int nappain = e.getKeyCode();
         if (nappain == KeyEvent.VK_W) {
-          
-            if (yksi.reY()>0){
-           yksi.setY(yksi.reY()-yksi.reNopeus());
+
+            if (yksi.reY() > 0) {
+                yksi.setY(yksi.reY() - yksi.reNopeus());
             }
         }
         if (nappain == KeyEvent.VK_S) {
             System.out.println(pallo.rePeKor());
-            if (pallo.rePeKor()>(yksi.reY()+yksi.rekorkeus()/1.2)){
-           yksi.setY(yksi.reY()+yksi.reNopeus());
-                System.out.println("wtf");
+            if (pallo.rePeKor() > (yksi.reY() + yksi.rekorkeus() / 1.2)) {
+                yksi.setY(yksi.reY() + yksi.reNopeus());
             }
         }
     }
@@ -59,7 +71,6 @@ public class peliNappaimet implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
-        
     }
 
 }

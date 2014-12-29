@@ -34,7 +34,24 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
     private Maila kaksi;
     private Pallo pallo;
 
-    public KlikkaustenKuuntelijaAsetukset(JButton pallonNopeus,JTextField pallonNopeusTeksti,JButton mailanNopeus, JTextField mailanNopeusTeksti,JButton pistemaara, JTextField pistemaaraTeksti, JButton paavalikko, JButton lopeta, JFrame valikko, Maila yksi, Maila kaksi, Pallo pallo) {
+    /**
+     *
+     * @param pallonNopeus Nappula joka tallentaa valitun pallon nopeuden
+     * @param pallonNopeusTeksti teksti alue mihin voi laittaa haluaman pallon
+     * nopeuden
+     * @param mailanNopeus nappula joka tallentaa valitun mailan nopeuden
+     * @param mailanNopeusTeksti teksti alue mihin voi laittaa haluaman pallon
+     * nopeuden
+     * @param pistemaara nappula joka tallentaa valitun pistemaaran
+     * @param pistemaaraTeksti teksti alue mihin voi laittaa haluamansa tekstin
+     * @param paavalikko nappula josta pääsee päävalikkoon
+     * @param lopeta nappula joka lopettaa pelin
+     * @param valikko nappula josta pääsee asetuksiin
+     * @param yksi vasemman puoleinen maila
+     * @param kaksi oikean puoleinen maila
+     * @param pallo pelissä käytettävä pallo
+     */
+    public KlikkaustenKuuntelijaAsetukset(JButton pallonNopeus, JTextField pallonNopeusTeksti, JButton mailanNopeus, JTextField mailanNopeusTeksti, JButton pistemaara, JTextField pistemaaraTeksti, JButton paavalikko, JButton lopeta, JFrame valikko, Maila yksi, Maila kaksi, Pallo pallo) {
         this.paavalikko = paavalikko;
         this.pallonNopeus = pallonNopeus;
         this.pallonNopeusTeksti = pallonNopeusTeksti;
@@ -50,8 +67,17 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
         this.paavalikko = paavalikko;
     }
 
+    /**
+     * Metodi saa aikaan Asetukset luokassa olevien nappuloiden ja teksti
+     * alueiden toiminnallisuuden
+     *
+     * @param ae nappula, teksti alue mitä on käytetty
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
+      //  JButton j = (JButton) ae.getSource();
+        //   j.getText()
+
         if (ae.getSource() == paavalikko) {
             valikko.setVisible(false);
             new Paavalikko2(yksi, kaksi, pallo).setVisible(true);
@@ -71,7 +97,7 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
             int maara2 = pallo.reNopeusX();
             pallonNopeusTeksti.setText(maara2 + "");
         }
-         if (ae.getSource() == pistemaara) {
+        if (ae.getSource() == pistemaara) {
             String x = pistemaaraTeksti.getText();
             int maara = Integer.parseInt(x);
             pallo.setPistemaara(maara);

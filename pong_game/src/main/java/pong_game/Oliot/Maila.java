@@ -24,18 +24,23 @@ public class Maila {
     private int pisteet;
     private Rectangle maila;
 
+    /**
+     * Alustetaan mailan muuttujien arvot
+     */
     public Maila() {
         this.x = 1;
         this.y = 10;
         this.nopeus = 10;
-        this.korkeus = 50*2;
-        this.leveys = 20*2;
+        this.korkeus = 50 * 2;
+        this.leveys = 20 * 2;
         this.pisteet = 0;
         maila = new Rectangle(x, y, leveys, korkeus);
     }
-public void setMailanKorkeus(int x){
-    korkeus = x;
-}
+
+    public void setMailanKorkeus(int x) {
+        korkeus = x;
+    }
+
     public int reNopeus() {
         return nopeus;
     }
@@ -67,7 +72,8 @@ public void setMailanKorkeus(int x){
     public void lisaaPiste() {
         pisteet++;
     }
-    public int rePisteet(){
+
+    public int rePisteet() {
         return pisteet;
     }
 
@@ -75,15 +81,26 @@ public void setMailanKorkeus(int x){
         return maila;
     }
 
+    /**
+     * Asettaa mailan kuvan paikan
+     *
+     * @param peli pelattava peli
+     */
     public void liiku(Peli peli) {
         maila.setBounds(x, y, leveys, korkeus);
     }
 
+    /**
+     * piirtää mailan valittuun paikkaan
+     *
+     * @param g
+     */
     public void piirra(Graphics g) {
         g.setColor(Color.white);
         g.fillRect(x, y, leveys, korkeus);
     }
-    public void setNopeus(int nopeus){
+
+    public void setNopeus(int nopeus) {
         this.nopeus = nopeus;
     }
 }

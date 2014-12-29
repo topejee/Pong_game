@@ -29,6 +29,9 @@ public class Pallo {
     private int pistemaara;
     private Peli peli;
 
+    /**
+     * Asettaa pallon muuttujien arvot
+     */
     public Pallo() {
         koko = 10 * 2;
         nopeusX = 2;
@@ -93,25 +96,31 @@ public class Pallo {
         return peliLeveys;
     }
 
+    /**
+     * Metodissa asetetaan pallon paikka, sekä muutetaan sen x ja y arvoja eli
+     * liikutetaan palloa
+     *
+     * @param peli pelattava peli
+     */
     public void liiku(Peli peli) {
         this.peli = peli;
         Random satunnainen = new Random();
         int satunnaineLuku = satunnainen.nextInt(rePeKor() + 1);
         palloImg.setBounds(x, y, koko, koko);
-        if (x <= koko/2) {
+        if (x <= koko / 2) {
             peli.reKaksi().lisaaPiste();
             x = rePeLev() / 2;
             y = satunnaineLuku;
         }
-        if (x >= peli.rePallo().rePeLev()-(koko/2)) {
+        if (x >= peli.rePallo().rePeLev() - (koko / 2)) {
             peli.reYks().lisaaPiste();
             x = rePeLev() / 2;
             y = satunnaineLuku;
         }
-        if (y <= koko/2) {
+        if (y <= koko / 2) {
             nopeusY = -nopeusY;
         }
-        if (y >= peli.rePallo().rePeKor()-(koko/2)) {
+        if (y >= peli.rePallo().rePeKor() - (koko / 2)) {
             nopeusY = -nopeusY;
         }
         x += nopeusX;
@@ -119,11 +128,21 @@ public class Pallo {
         tormaustesti(peli);
     }
 
+    /**
+     * piirtää pallon
+     *
+     * @param g
+     */
     public void piirra(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillOval(x, y, koko, koko);
     }
 
+    /**
+     * Testaa törmääkö pallo mailaan.
+     *
+     * @param peli pelattava peli
+     */
     public void tormaustesti(Peli peli) {
         if (palloImg.intersects(peli.reYks().ReMaila()) || palloImg.intersects(peli.reKaksi().ReMaila())) {
             nopeusX = -nopeusX;
@@ -142,10 +161,6 @@ public class Pallo {
 
     public void setPistemaara(int maara) {
         pistemaara = maara;
-    }
-    public void setSuuntaVasen(){
-        nopeusX = -nopeusX;
-        nopeusY = 0;
     }
 
 }

@@ -11,6 +11,9 @@ package pong_game.AI;
  */
 public class AI {
 
+    /**
+     * Metodi ei tee yhtään mitään tällähetkellä.
+     */
     public void teeSiirto() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

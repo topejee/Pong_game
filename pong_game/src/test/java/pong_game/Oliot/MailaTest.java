@@ -52,16 +52,22 @@ public class MailaTest {
 
     @Test
     public void onkoMailanLeveysArvoOikea() {
-        assertEquals(2, maila.reLeveys());
+        assertEquals(40, maila.reLeveys());
     }
 
     @Test
     public void onkoMailanKorkeusArvoOikea() {
-        assertEquals(4, maila.rekorkeus());
+        assertEquals(100, maila.rekorkeus());
     }
 
     @Test
     public void onkoMailanNopeusArvoOikea() {
-        assertEquals(2, maila.reNopeus());
+        assertEquals(10, maila.reNopeus());
+    }
+
+    @Test
+    public void lisaaPiste() {
+        maila.lisaaPiste();
+        assertEquals(1, maila.rePisteet());
     }
 }
