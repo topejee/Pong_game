@@ -6,45 +6,43 @@
 package pong_game.Oliot;
 
 import java.awt.Color;
-import pong_game.Kaynnistys.Peli;
+import pong_game.PelinToiminta.Peli;
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import static java.lang.Math.random;
 import java.util.Random;
+import pong_game.PelinToiminta.PelinTiedot;
 
 /**
  *
  * @author Tommi
  */
-public class Pallo {
+public class Pallo extends Olio {
 
     private int koko;
     private int nopeusX;
     private int nopeusY;
-    private int peliKorkeus;
-    private int peliLeveys;
     private int x;
     private int y;
     private Rectangle palloImg;
-    private int pistemaara;
     private Peli peli;
+    private PelinTiedot pelinTiedot;
+    Object getX;
 
     /**
      * Asettaa pallon muuttujien arvot
      */
-    public Pallo() {
+    public Pallo(PelinTiedot tiedot) {
+        pelinTiedot = tiedot;
         koko = 10 * 2;
         nopeusX = 2;
         nopeusY = 2;
-        peliKorkeus = 300 * 2;
-        peliLeveys = 400 * 2;
-        x = rePeLev() / 2;
+        x = pelinTiedot.getPelilaudanLeveys() - 2;
         Random satunnainen = new Random();
-        int satunnaineLuku = satunnainen.nextInt(rePeKor() + 1);
+        int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() + 1);
         y = satunnaineLuku;
         palloImg = new Rectangle(x, y, koko, koko);
         palloImg.setBounds(x, y, koko, koko);
-        pistemaara = 5;
     }
 
     public void setNopeus(int maara) {
@@ -58,15 +56,14 @@ public class Pallo {
         }
     }
 
-    public int reKoko() {
+    public int getKoko() {
         return koko;
     }
 
-    public int reNopeusX() {
+    public int getNopeusX() {
         return nopeusX;
     }
-
-    public int reNopeusY() {
+     public int getNopeusY() {
         return nopeusY;
     }
 
@@ -88,14 +85,6 @@ public class Pallo {
         }
     }
 
-    public int rePeKor() {
-        return peliKorkeus;
-    }
-
-    public int rePeLev() {
-        return peliLeveys;
-    }
-
     /**
      * Metodissa asetetaan pallon paikka, sekä muutetaan sen x ja y arvoja eli
      * liikutetaan palloa
@@ -104,28 +93,11 @@ public class Pallo {
      */
     public void liiku(Peli peli) {
         this.peli = peli;
-        Random satunnainen = new Random();
-        int satunnaineLuku = satunnainen.nextInt(rePeKor() + 1);
         palloImg.setBounds(x, y, koko, koko);
-        if (x <= koko / 2) {
-            peli.reKaksi().lisaaPiste();
-            x = rePeLev() / 2;
-            y = satunnaineLuku;
-        }
-        if (x >= peli.rePallo().rePeLev() - (koko / 2)) {
-            peli.reYks().lisaaPiste();
-            x = rePeLev() / 2;
-            y = satunnaineLuku;
-        }
-        if (y <= koko / 2) {
-            nopeusY = -nopeusY;
-        }
-        if (y >= peli.rePallo().rePeKor() - (koko / 2)) {
-            nopeusY = -nopeusY;
-        }
+        tormaustestiReuna();
         x += nopeusX;
         y += nopeusY;
-        tormaustesti(peli);
+        tormaustestiMaila(peli);
     }
 
     /**
@@ -143,24 +115,47 @@ public class Pallo {
      *
      * @param peli pelattava peli
      */
-    public void tormaustesti(Peli peli) {
-        if (palloImg.intersects(peli.reYks().ReMaila()) || palloImg.intersects(peli.reKaksi().ReMaila())) {
+    public void tormaustestiMaila(Peli peli) {
+        if (palloImg.intersects(peli.getYks().getMaila()) || palloImg.intersects(peli.getKaksi().getMaila())) {
+
             nopeusX = -nopeusX;
             x += nopeusX * 5;
         }
 
     }
 
-    public int rePistemaara() {
-        return pistemaara;
+    public void tormaustestiReuna() {
+        Random satunnainen = new Random();
+        int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() + 1);
+        if (x <= koko / 2) {
+            peli.getKaksi().lisaaPiste();
+            x = pelinTiedot.getPelilaudanLeveys() / 2;
+            y = satunnaineLuku;
+        }
+        if (x >= pelinTiedot.getPelilaudanLeveys() - (koko / 2)) {
+            peli.getYks().lisaaPiste();
+            x = pelinTiedot.getPelilaudanLeveys() / 2;
+            y = satunnaineLuku;
+        }
+        if (y <= 0) {
+            nopeusY = -nopeusY;
+        }
+        if (y >= pelinTiedot.getPelilaudanKorkeus() - (koko / 2)) {
+            nopeusY = -nopeusY;
+        }
     }
 
-    public int reY() {
+    public int getX() {
+        return x;
+    }
+    public void setNopeusX(int x){
+        nopeusX = x;
+    }
+    public void setNopeusY(int x){
+        nopeusY = x;
+    }
+    public int getY(){
         return y;
-    }
-
-    public void setPistemaara(int maara) {
-        pistemaara = maara;
     }
 
 }

@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pong_game.PelinToiminta.PelinTiedot;
 
 /**
  *
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
 public class PalloTest {
 
     private Pallo pallo;
+    private PelinTiedot pelinTiedot;
 
     public PalloTest() {
     }
@@ -34,7 +36,8 @@ public class PalloTest {
 
     @Before
     public void setUp() {
-        pallo = new Pallo();
+        pelinTiedot = new PelinTiedot();
+        pallo = new Pallo(pelinTiedot);
     }
 
     @After
@@ -43,47 +46,68 @@ public class PalloTest {
 
     @Test
     public void onkoPallonKokoOikea() {
-        assertEquals(20, pallo.reKoko());
+        assertEquals(20, pallo.getKoko());
     }
 
     @Test
     public void onkoPallonNopeusOikea() {
-        assertEquals(2, pallo.reNopeusX());
+        assertEquals(2, pallo.getNopeusX());
     }
 
     @Test
     public void meneekoPallonNopeusAlleNollan() {
         pallo.kasvataNopeutta(-20);
-        assertEquals(0, pallo.reNopeusX());
+        assertEquals(0, pallo.getNopeusX());
     }
 
     @Test
     public void meneekoPallonKokoAlleNollan() {
         pallo.kasvataKokoa(-20);
-        assertEquals(0, pallo.reKoko());
+        assertEquals(0, pallo.getKoko());
     }
 
     @Test
     public void kasvaakoPallonKoonArvo() {
         pallo.kasvataKokoa(10);
-        assertEquals(30, pallo.reKoko());
+        assertEquals(30, pallo.getKoko());
     }
 
     @Test
-    public void palautaPeliLautaLeveys() {
-
-        assertEquals(800, pallo.rePeLev());
+    public void onkoPeliLaudanLeveytta() {
+        assertEquals(pelinTiedot.getPelilaudanLeveys() / 2, 400);
     }
 
     @Test
-    public void palautaPeliLautaKorkeus() {
-
-        assertEquals(600, pallo.rePeKor());
+    public void onkoNopeusAlleNollanY() {
+        pallo.setNopeusY(0);
+        pallo.setNopeus(-10);
+        assertEquals(0, pallo.getNopeusY());
     }
 
     @Test
-    public void palautaPistemaara() {
-        assertEquals(5, pallo.rePistemaara());
+    public void onkoNopeusAlleNollanX() {
+        pallo.setNopeusX(0);
+        pallo.setNopeus(-10);
+        assertEquals(0, pallo.getNopeusX());
     }
 
+    @Test
+    public void onkokasvataNopeuttaXOikein() {
+        pallo.setNopeusX(0);
+        pallo.kasvataNopeutta(-10);
+        assertEquals(0, pallo.getNopeusX());
+    }
+
+    @Test
+    public void onkokasvataNopeuttaYOikein() {
+        pallo.setNopeusY(0);
+        pallo.kasvataNopeutta(-10);
+        assertEquals(0, pallo.getNopeusY());
+    }
+
+    @Test
+    public void onkokasvataKokoaOikein() {
+        pallo.kasvataKokoa(-1000);
+        assertEquals(0, pallo.getKoko());
+    }
 }

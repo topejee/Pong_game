@@ -25,3 +25,7 @@ Mitä tein:
 -Sain koodattua lisää. Pong peliä pystyy jo pelamaan, valikko toimii sekä muutamia asetuksia pystyy muuttamaan.¨
 
 Aikaa kulunut: Hyvin paljon (vaikea arvioida aikaa, sisältää monen päivän työn)
+2.1.2015
+Mitä tein: Muutin luokkia, metodeja ja lisäsin testejä. Eli ei mitään kovin uutta, mutta koodia on selvennetty.
+
+kulunut aika 6 tuntia

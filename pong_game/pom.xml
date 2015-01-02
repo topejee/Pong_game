@@ -40,8 +40,7 @@
                 <configuration>
                     <instrumentation>
                         <includes>
-                            <include>pong_game.logiikka/*.class</include>
-                            <include>pong_game.tekoaly/*.class</include>
+                            <include>pong_game.PelinToiminta/*.class</include>
                         </includes>
                     </instrumentation>
                 </configuration>

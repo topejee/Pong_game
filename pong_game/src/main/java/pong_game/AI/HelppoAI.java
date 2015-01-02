@@ -5,8 +5,8 @@
  */
 package pong_game.AI;
 
-import pong_game.Kaynnistys.Peli;
-import pong_game.Oliot.Maila;
+import pong_game.PelinToiminta.Peli;
+import pong_game.Oliot.Pelaaja;
 
 /**
  *
@@ -14,7 +14,7 @@ import pong_game.Oliot.Maila;
  */
 public class HelppoAI extends AI {
 
-    private Maila pelaaja;
+    private Pelaaja pelaaja;
     private int x;
     private Peli peli;
 
@@ -25,7 +25,7 @@ public class HelppoAI extends AI {
      * @param peli Peli jota pelataan.
      */
 
-    public HelppoAI(Maila maila, Peli peli) {
+    public HelppoAI(Pelaaja maila, Peli peli) {
         pelaaja = maila;
         this.peli = peli;
         x = 0;
@@ -38,14 +38,14 @@ public class HelppoAI extends AI {
      */
     public void teeSiirto() {
         if (x == 0) {
-            pelaaja.setY(pelaaja.reY() + pelaaja.reNopeus());
-            if (peli.rePallo().rePeKor() < pelaaja.reY()) {
+            pelaaja.setY(pelaaja.getY() + pelaaja.getNopeus());
+            if (peli.getPelinTiedot().getPelilaudanKorkeus() < pelaaja.getY()) {
                 x = 1;
             }
         }
         if (x == 1) {
-            pelaaja.setY(pelaaja.reY() - pelaaja.reNopeus());
-            if (0 > pelaaja.reY()) {
+            pelaaja.setY(pelaaja.getY() - pelaaja.getNopeus());
+            if (0 > pelaaja.getY()) {
                 x = 0;
             }
         }

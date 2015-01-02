@@ -5,8 +5,9 @@
  */
 package pong_game.AI;
 
-import pong_game.Kaynnistys.Peli;
-import pong_game.Oliot.Maila;
+import java.util.Random;
+import pong_game.PelinToiminta.Peli;
+import pong_game.Oliot.Pelaaja;
 
 /**
  *
@@ -14,7 +15,7 @@ import pong_game.Oliot.Maila;
  */
 public class VaikeaAI extends AI {
 
-    private Maila pelaaja;
+    private Pelaaja pelaaja;
     private Peli peli;
 
     /**
@@ -23,7 +24,7 @@ public class VaikeaAI extends AI {
      * maila
      * @param peli Peli jota pelataan.
      */
-    public VaikeaAI(Maila maila, Peli peli) {
+    public VaikeaAI(Pelaaja maila, Peli peli) {
         pelaaja = maila;
         this.peli = peli;
     }
@@ -34,15 +35,28 @@ public class VaikeaAI extends AI {
      * selville pallon koordinaatit liikkuu se palloa kohti y akselilla.
      */
     public void teeSiirto() {
-        int x = peli.rePallo().reNopeusX() * 2 / 3;
+        Random liikemaaraRandom = new Random();
+        int liikemaaraInt = 0;
+        int x = peli.getPallo().getNopeusX() * 2 / 3;
         if (x < 0) {
             x = -x;
         }
-        if (peli.rePallo().reY() > pelaaja.reY()) {
-            pelaaja.setY(pelaaja.reY() + x);
+        if (peli.getPallo().getY() > pelaaja.getY() + pelaaja.getLeveys() / 2) {
+            liikemaaraInt = liikemaaraRandom.nextInt(10);
+            if (liikemaaraInt > 7) {
+                pelaaja.setY(pelaaja.getY() + x * 2);
+            } else {
+                pelaaja.setY(pelaaja.getY() + x);
+            }
+
         }
-        if (peli.rePallo().reY() < pelaaja.reY()) {
-            pelaaja.setY(pelaaja.reY() - x);
+        if (peli.getPallo().getY() < pelaaja.getY() + pelaaja.getLeveys() / 2) {
+            liikemaaraInt = liikemaaraRandom.nextInt(10);
+            if (liikemaaraInt > 7) {
+                pelaaja.setY(pelaaja.getY() - x * 2);
+            } else {
+                pelaaja.setY(pelaaja.getY() - x);
+            };
         }
     }
 }
