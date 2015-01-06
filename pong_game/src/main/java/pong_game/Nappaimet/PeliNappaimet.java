@@ -7,13 +7,16 @@ package pong_game.Nappaimet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.VK_M;
 import static java.awt.event.KeyEvent.VK_P;
+import static java.awt.event.KeyEvent.VK_R;
 import java.awt.event.KeyListener;
 import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
 import pong_game.Oliot.Olio;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
+import pong_game.Valikkot.Paavalikko;
 
 /**
  *
@@ -89,6 +92,21 @@ public class PeliNappaimet implements KeyListener {
         }
         if (nappain == VK_P) {
             peli.tauko();
+        }
+        if (nappain == VK_M) {
+            peli.getPeliAlusta().setVisible(false);
+            peli.tauko();
+            peli = null;
+            pelinTiedot.nollaaPisteet();
+            new Paavalikko(pelinTiedot).setVisible(true);
+        }
+        if (nappain == VK_R) {
+            peli.getPeliAlusta().setVisible(false);
+            peli.tauko();
+            peli = null;
+            pelinTiedot.nollaaPisteet();
+            Peli peli = new Peli(pelinTiedot);
+            peli.aloita();
         }
 
     }

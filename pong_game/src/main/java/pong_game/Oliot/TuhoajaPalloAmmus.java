@@ -5,15 +5,18 @@
  */
 package pong_game.Oliot;
 
-import java.awt.Graphics;
-import java.awt.geom.Rectangle2D;
-import pong_game.PelinToiminta.Peli;
+import java.util.Random;
+import pong_game.PelinToiminta.PelinTiedot;
 
 /**
  *
  * @author Tommi
  */
+public class TuhoajaPalloAmmus extends TuhoajaPallo {
 
-public class Olio {
+    public TuhoajaPalloAmmus(PelinTiedot tiedot) {
+        super(tiedot);
+        setNopeusX(reVanhaNopeusX());
+    }
 
 }

@@ -71,7 +71,7 @@ public class NappaintenVaihto implements ActionListener {
             nappainTeksti.setText("          ");
 
         }
-         if (teksti.equals("oikeaPelaajaAlas")) {
+        if (teksti.equals("oikeaPelaajaAlas")) {
             char x = (nappainTeksti.getText()).charAt(0);
             nappain = (int) x;
             pelinTiedot.getPelaajaKaksi().setAlaNappain(nappain);

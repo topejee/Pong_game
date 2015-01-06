@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import pong_game.Nappaimet.LaatikoidenRaksit;
 import pong_game.PelinToiminta.PelinTiedot;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
@@ -42,6 +43,8 @@ public class Asetukset extends JFrame {
     private PelinTiedot pelinTiedot;
     private JButton nappaimet;
     private JCheckBox toinenPelaaja;
+    private JCheckBox ammusPallo;
+    private JCheckBox tuhoajaPallo;
 
     //  @Override
     /**
@@ -91,18 +94,13 @@ public class Asetukset extends JFrame {
         pistemaara.addActionListener(kopioija);
         lopeta.addActionListener(kopioija);
         nappaimet.addActionListener(kopioija);
-        toinenPelaaja.addItemListener(new ItemListener() {
+        LaatikoidenRaksit laatikot = new LaatikoidenRaksit(toinenPelaaja,ammusPallo,tuhoajaPallo,pelinTiedot);
+        toinenPelaaja.addItemListener(laatikot);
+        ammusPallo.addItemListener(laatikot);
+        tuhoajaPallo.addItemListener(laatikot);
 
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                 if(toinenPelaaja.isSelected()){
-                     pelinTiedot.setTrue();
-                 } 
-                 if (!toinenPelaaja.isSelected()){
-                     pelinTiedot.setFalse();
-                 }
-            }
-        });
+           
+        
 
     }
 
@@ -132,7 +130,8 @@ public class Asetukset extends JFrame {
         pistemaaraTeksti = new JTextField();
         pistemaaraTeksti.setText(pelinTiedot.getPelinPisteet() + "");
         toinenPelaaja = new JCheckBox("Toinen pelaaja");
-        toinenPelaaja.setName("toinenPelaaja");
+        tuhoajaPallo = new JCheckBox("TuhoajaPallo");
+        ammusPallo = new JCheckBox("AmmusPallo");
         panel.add(pallonNopeus);
         panel.add(pallonNopeusTeksti);
         panel.add(mailanNopeus);
@@ -141,15 +140,25 @@ public class Asetukset extends JFrame {
         panel.add(pistemaaraTeksti);
         panel.add(nappaimet);
         panel.add(toinenPelaaja);
+        panel.add(ammusPallo);
+        panel.add(tuhoajaPallo);
         panel.add(paavalikko);
         panel.add(lopeta);
-        if (pelinTiedot.getOnkoToinenPelaaja()== true){
-            toinenPelaaja.doClick();
-        }
+        laatikot();
 
         return panel;
     }
 
-
+    public void laatikot() {
+        if (pelinTiedot.getOnkoAmmusPallo() == true) {
+            ammusPallo.doClick();
+        }
+        if (pelinTiedot.getOnkoTuhoajaPallo() == true) {
+            tuhoajaPallo.doClick();
+        }
+        if (pelinTiedot.getOnkoToinenPelaaja() == true) {
+            toinenPelaaja.doClick();
+        }
+    }
 
 }

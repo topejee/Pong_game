@@ -28,6 +28,8 @@ public class Pallo extends Olio {
     private Peli peli;
     private PelinTiedot pelinTiedot;
     Object getX;
+    private int vanhaNopeusX;
+    private Random satunnainen;
 
     /**
      * Asettaa pallon muuttujien arvot
@@ -37,13 +39,14 @@ public class Pallo extends Olio {
         koko = 10 * 2;
         nopeusX = 2;
         nopeusY = 2;
-        x = pelinTiedot.getPelilaudanLeveys() - 2;
-        Random satunnainen = new Random();
+        x = pelinTiedot.getPelilaudanLeveys() / 2;
+        satunnainen = new Random();
         int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() + 1);
         y = satunnaineLuku;
         palloImg = new Rectangle(x, y, koko, koko);
         palloImg.setBounds(x, y, koko, koko);
     }
+
 
     public void setNopeus(int maara) {
         nopeusX = maara;
@@ -127,16 +130,24 @@ public class Pallo extends Olio {
 
     public void tormaustestiReuna() {
         Random satunnainen = new Random();
-        int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() + 1);
+        int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus()) + 1;
         if (x <= koko / 2) {
             peli.getKaksi().lisaaPiste();
             x = pelinTiedot.getPelilaudanLeveys() / 2;
             y = satunnaineLuku;
+            int yy = satunnainen.nextInt(1) + 1;
+            if (yy == 1) {
+                setNopeusX(-getNopeusX());
+            }
         }
         if (x >= pelinTiedot.getPelilaudanLeveys() - (koko / 2)) {
             peli.getYks().lisaaPiste();
             x = pelinTiedot.getPelilaudanLeveys() / 2;
             y = satunnaineLuku;
+            int yy = satunnainen.nextInt(1) + 1;
+            if (yy == 1) {
+                setNopeusX(-getNopeusX());
+            }
         }
         if (y <= 0) {
             nopeusY = -nopeusY;
@@ -160,6 +171,26 @@ public class Pallo extends Olio {
 
     public int getY() {
         return y;
+    }
+
+    public Rectangle getPalloImg() {
+        return palloImg;
+    }
+
+    public Peli getPeli() {
+        return peli;
+    }
+
+    public PelinTiedot getPelinTiedot() {
+        return pelinTiedot;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
 }

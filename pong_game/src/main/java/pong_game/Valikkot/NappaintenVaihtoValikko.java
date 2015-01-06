@@ -26,7 +26,10 @@ public class NappaintenVaihtoValikko extends javax.swing.JFrame {
         this.pelinTiedot = pelinTiedot;
         initComponents();
         nappaimet();
-
+        oikeaPelaajaAlas.setText((char) pelinTiedot.getPelaajaKaksi().getAlaNappain() + "");
+        oikeaPelaajaYlos.setText((char) pelinTiedot.getPelaajaKaksi().getYlaNappain() + "");
+        vasenPelaajaAlas.setText((char) pelinTiedot.getPelaajaYksi().getAlaNappain() + "");
+        vasenPelaajaYlos.setText((char) pelinTiedot.getPelaajaYksi().getYlaNappain() + "");
     }
 
     /**

@@ -78,6 +78,10 @@ public class Pelaaja extends Olio {
         pisteet++;
     }
 
+    public void vahennaPiste() {
+        pisteet--;
+    }
+
     public int getPisteet() {
         return pisteet;
     }
@@ -93,10 +97,12 @@ public class Pelaaja extends Olio {
     public int getAlaNappain() {
         return alaNappain;
     }
-    public void setYlaNappain(int x){
+
+    public void setYlaNappain(int x) {
         ylaNappain = x;
     }
-    public void setAlaNappain(int x){
+
+    public void setAlaNappain(int x) {
         alaNappain = x;
     }
 
@@ -105,7 +111,6 @@ public class Pelaaja extends Olio {
      *
      * @param peli pelattava peli
      */
-    @Override
     public void liiku(Peli peli) {
         maila.setBounds(x, y, leveys, korkeus);
     }
@@ -115,7 +120,6 @@ public class Pelaaja extends Olio {
      *
      * @param g
      */
-    @Override
     public void piirra(Graphics g) {
         g.setColor(Color.white);
         g.fillRect(x, y, leveys, korkeus);
@@ -125,8 +129,11 @@ public class Pelaaja extends Olio {
         this.nopeus = nopeus;
     }
 
-    @Override
     public void setNopeus(int nopeus) {
         this.nopeus = nopeus;
+    }
+
+    public void nollaaPisteet() {
+        pisteet = 0;
     }
 }

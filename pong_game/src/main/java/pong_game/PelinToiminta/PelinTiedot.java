@@ -21,6 +21,8 @@ public class PelinTiedot {
     private Pelaaja pelaajaKaksi;
     private Pallo pallo;
     private boolean toinenPelaaja;
+    private boolean tuhoajaPallo;
+    private boolean ammusPallo;
 
     public PelinTiedot() {
         peliLaudanKorkeus = 300 * 2;
@@ -30,16 +32,43 @@ public class PelinTiedot {
         this.pelaajaKaksi = new Pelaaja();
         this.pallo = new Pallo(this);
         toinenPelaaja = false;
+        tuhoajaPallo = false;
+        ammusPallo = false;
     }
 
-    public void setFalse() {
+    public void setAIFalse() {
         toinenPelaaja = false;
     }
 
-    public void setTrue() {
+    public void setAITrue() {
         toinenPelaaja = true;
     }
-    public boolean getOnkoToinenPelaaja(){
+
+    public void setTuhoajaPalloFalse() {
+        toinenPelaaja = false;
+    }
+
+    public void setTuhoajaPalloTrue() {
+        toinenPelaaja = true;
+    }
+
+    public void setAmmusPalloFalse() {
+        toinenPelaaja = false;
+    }
+
+    public void setAmmusPalloTrue() {
+        toinenPelaaja = true;
+    }
+
+    public boolean getOnkoAmmusPallo() {
+        return toinenPelaaja;
+    }
+
+    public boolean getOnkoToinenPelaaja() {
+        return toinenPelaaja;
+    }
+
+    public boolean getOnkoTuhoajaPallo() {
         return toinenPelaaja;
     }
 
@@ -77,6 +106,11 @@ public class PelinTiedot {
 
     public void setPeliLaudanKorkeus(int i) {
         peliLaudanKorkeus = i;
+    }
+
+    public void nollaaPisteet() {
+        pelaajaKaksi.nollaaPisteet();
+        pelaajaYksi.nollaaPisteet();
     }
 
 }
