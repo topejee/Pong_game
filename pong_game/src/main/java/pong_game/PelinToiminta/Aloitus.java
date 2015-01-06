@@ -9,7 +9,14 @@ package pong_game.PelinToiminta;
  *
  * @author Tommi
  */
-import pong_game.Valikkot.Paavalikko2;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.util.Scanner;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import pong_game.Valikkot.Paavalikko;
 import pong_game.Oliot.Pallo;
 import pong_game.Oliot.Pelaaja;
 
@@ -22,6 +29,8 @@ public class Aloitus {
      */
     public static void main(String[] args) {
 
-        new Paavalikko2(new PelinTiedot()).setVisible(true);
+         new Paavalikko(new PelinTiedot()).setVisible(true);
+  
     }
+
 }

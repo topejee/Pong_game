@@ -11,22 +11,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import pong_game.Valikkot.Asetukset;
-import pong_game.Valikkot.Paavalikko2;
+import pong_game.Valikkot.Paavalikko;
 import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
+import pong_game.Valikkot.NappaintenVaihtoValikko;
 
 /**
  *
  * @author Tommi
  */
 public class KlikkaustenKuuntelija implements ActionListener {
-
-    private JButton pelaa;
-    private JButton asetukset;
-    private JButton lopeta;
-    private Paavalikko2 valikko;
+    
+    private Paavalikko valikko;
     private PelinTiedot pelinTiedot;
 
     /**
@@ -40,10 +38,7 @@ public class KlikkaustenKuuntelija implements ActionListener {
      * @param kaksi oikean puolinen maila
      * @param pallo pelissä oleva pallo
      */
-    public KlikkaustenKuuntelija(JButton plus, JButton miinus, JButton zed, Paavalikko2 valikko, PelinTiedot tiedot) {
-        this.pelaa = plus;
-        this.asetukset = miinus;
-        this.lopeta = zed;
+    public KlikkaustenKuuntelija(Paavalikko valikko, PelinTiedot tiedot) {
         this.valikko = valikko;
         this.pelinTiedot = tiedot;
     }
@@ -57,19 +52,22 @@ public class KlikkaustenKuuntelija implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == pelaa) {
+        JButton j = (JButton) ae.getSource();
+        String teksti = j.getText();
+        
+        if (teksti.equals("Pelaa")) {
             valikko.setVisible(false);
             Peli pelaa = new Peli(pelinTiedot);
             pelaa.aloita();
         }
-        if (ae.getSource() == asetukset) {
+        if (teksti.equals("Asetukset")) {
             valikko.setVisible(false);
             Asetukset asetus = new Asetukset(pelinTiedot);
         }
-
-        if (ae.getSource() == lopeta) {
+        
+        if (teksti.equals("Lopeta")) {
             System.exit(0);
-
+            
         }
     }
 }

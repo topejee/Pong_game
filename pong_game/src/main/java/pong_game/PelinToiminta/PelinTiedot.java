@@ -20,6 +20,7 @@ public class PelinTiedot {
     private Pelaaja pelaajaYksi;
     private Pelaaja pelaajaKaksi;
     private Pallo pallo;
+    private boolean toinenPelaaja;
 
     public PelinTiedot() {
         peliLaudanKorkeus = 300 * 2;
@@ -28,6 +29,18 @@ public class PelinTiedot {
         this.pelaajaYksi = new Pelaaja();
         this.pelaajaKaksi = new Pelaaja();
         this.pallo = new Pallo(this);
+        toinenPelaaja = false;
+    }
+
+    public void setFalse() {
+        toinenPelaaja = false;
+    }
+
+    public void setTrue() {
+        toinenPelaaja = true;
+    }
+    public boolean getOnkoToinenPelaaja(){
+        return toinenPelaaja;
     }
 
     public int getPelilaudanKorkeus() {

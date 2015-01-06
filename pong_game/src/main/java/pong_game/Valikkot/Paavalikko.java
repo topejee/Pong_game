@@ -19,19 +19,17 @@ import pong_game.Oliot.Pallo;
  *
  * @author Tommi
  */
-public class Paavalikko2 extends javax.swing.JFrame {
+public class Paavalikko extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public Paavalikko2(PelinTiedot pelintiedot) {
-        // this.getContentPane().setBackground(Color.blue);
+    public Paavalikko(PelinTiedot pelintiedot) {
+
         pelinTiedot = pelintiedot;
         initComponents();
-//        this.pallo = pallo;
-//        this.yksi = yksi;
-//        this.kaksi = kaksi;
         nappaimet();
+        
     }
 
     /**
@@ -52,7 +50,7 @@ public class Paavalikko2 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        pelaa.setText("pelaa");
+        pelaa.setText("Pelaa");
 
         asetukset.setText("Asetukset");
 
@@ -135,7 +133,7 @@ public class Paavalikko2 extends javax.swing.JFrame {
      * Metodi valmistaan nappaimien toiminnallisuuden.
      */
     public void nappaimet() {
-        KlikkaustenKuuntelija kopioija = new KlikkaustenKuuntelija(pelaa, asetukset, lopeta, this, pelinTiedot);   
+        KlikkaustenKuuntelija kopioija = new KlikkaustenKuuntelija(this, pelinTiedot);   
         pelaa.addActionListener(kopioija);
         asetukset.addActionListener(kopioija);
         lopeta.addActionListener(kopioija);

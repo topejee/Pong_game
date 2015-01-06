@@ -6,7 +6,7 @@
 package pong_game.PelinToiminta;
 
 import java.awt.BorderLayout;
-import pong_game.Nappaimet.peliNappaimet;
+import pong_game.Nappaimet.PeliNappaimet;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,18 +30,18 @@ import pong_game.Oliot.Pallo;
  * @author Tommi
  */
 public class Peli extends Canvas implements Runnable {
-    
+
     private Pelaaja pelaajaYksi;
     private Pelaaja pelaajaKaksi;
     private Pallo pallo;
     private JFrame frame;
     private Dimension peliLauta;
-    private peliNappaimet nappaimet;
+    private PeliNappaimet nappaimet;
     private BufferStrategy grafiikat;
     private BufferedImage kuva;
     private AI AI;
     private PelinTiedot pelinTiedot;
-    public Object getPelinTiedot;
+    private boolean tauko;
 
     /**
      * Alustetaan peli, eli tehdään JFrame, AI, nappaimet, alustetaan mailojen
@@ -56,15 +56,17 @@ public class Peli extends Canvas implements Runnable {
         this.pallo = pelinTiedot.getPallo();
         this.pelaajaYksi = pelinTiedot.getPelaajaYksi();
         this.pelaajaKaksi = pelinTiedot.getPelaajaKaksi();
-        this.AI = new VaikeaAI(pelaajaKaksi, this);
+        if (pelinTiedot.getOnkoToinenPelaaja() == false) {
+            this.AI = new VaikeaAI(pelaajaKaksi, this);
+        }
         pelaajaYksi.setX(1);
         pelaajaYksi.setY(pelinTiedot.getPelilaudanKorkeus() / 2);
         pelaajaKaksi.setX(pelinTiedot.getPelilaudanLeveys() - pelaajaKaksi.getLeveys());
         pelaajaKaksi.setY(pelinTiedot.getPelilaudanKorkeus() / 2);
         pelinGrafiikka();
-        
+
     }
-    
+
     public void pelinGrafiikka() {
         frame = new JFrame();
         peliLauta = new Dimension(pelinTiedot.getPelilaudanLeveys() + 10, pelinTiedot.getPelilaudanKorkeus() + pallo.getKoko() * 2);
@@ -79,7 +81,7 @@ public class Peli extends Canvas implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        nappaimet = new peliNappaimet(pelinTiedot, this);
+        nappaimet = new PeliNappaimet(pelinTiedot, this);
         kuva = new BufferedImage(pelinTiedot.getPelilaudanLeveys() + 50, pelinTiedot.getPelilaudanKorkeus() + 40, BufferedImage.TYPE_INT_RGB);
         this.requestFocus();
     }
@@ -99,23 +101,27 @@ public class Peli extends Canvas implements Runnable {
     @Override
     public void run() {
         while (true) {
-            if (jokuVoitti()) {
-                break;
+            if (tauko == false) {
+                if (jokuVoitti()) {
+                    break;
+                }
+                if ((pelinTiedot.getOnkoToinenPelaaja() == false)) {
+                    AI.teeSiirto();
+                }
+                pallo.liiku(this);
+                pelaajaKaksi.liiku(this);
+                pelaajaYksi.liiku(this);
+                piirra();
+
             }
-            AI.teeSiirto();
-            pallo.liiku(this);
-            pelaajaKaksi.liiku(this);
-            pelaajaYksi.liiku(this);
-            piirra();
             try {
                 Thread.sleep(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Peli.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
     }
-    
+
     public boolean jokuVoitti() {
         if (pelinTiedot.getPelinPisteet() <= pelaajaYksi.getPisteet()) {
             voittaja("VASEN PELAAJA");
@@ -179,24 +185,44 @@ public class Peli extends Canvas implements Runnable {
         kuvaa.show();
         lopeta();
     }
-    
+
     public Pelaaja getYks() {
         return pelaajaYksi;
     }
-    
+
     public Pelaaja getKaksi() {
         return pelaajaKaksi;
     }
-    
+
     public Pallo getPallo() {
         return pallo;
     }
-    
+
     public PelinTiedot getPelinTiedot() {
         return pelinTiedot;
     }
-    
+
     private void lopeta() {
         System.exit(0);
+    }
+
+    public void tauko() {
+        if (tauko == true) {
+            tauko = false;
+        } else {
+            tauko = true;
+            BufferStrategy kuvaa = getBufferStrategy();
+            if (kuvaa == null) {
+                createBufferStrategy(3);
+                return;
+            }
+            Graphics g = kuvaa.getDrawGraphics();
+            g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanKorkeus() + 1500, pelinTiedot.getPelilaudanKorkeus() + 1000, null);
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("timesRoman", Font.ITALIC, 50));
+            g.drawString("TAUKO", 50, 50);
+            g.dispose();
+            kuvaa.show();
+        }
     }
 }

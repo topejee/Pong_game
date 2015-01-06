@@ -63,7 +63,8 @@ public class Pallo extends Olio {
     public int getNopeusX() {
         return nopeusX;
     }
-     public int getNopeusY() {
+
+    public int getNopeusY() {
         return nopeusY;
     }
 
@@ -148,13 +149,16 @@ public class Pallo extends Olio {
     public int getX() {
         return x;
     }
-    public void setNopeusX(int x){
+
+    public void setNopeusX(int x) {
         nopeusX = x;
     }
-    public void setNopeusY(int x){
+
+    public void setNopeusY(int x) {
         nopeusY = x;
     }
-    public int getY(){
+
+    public int getY() {
         return y;
     }
 

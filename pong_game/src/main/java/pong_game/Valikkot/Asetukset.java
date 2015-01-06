@@ -2,14 +2,18 @@ package pong_game.Valikkot;
 
 import pong_game.Nappaimet.KlikkaustenKuuntelijaAsetukset;
 import java.awt.BorderLayout;
+import java.awt.Checkbox;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,10 +39,9 @@ public class Asetukset extends JFrame {
     private JTextField mailanNopeusTeksti;
     private JTextField pistemaaraTeksti;
     private JButton lopeta;
-    private Pallo pallo;
-    private Pelaaja yksi;
-    private Pelaaja kaksi;
     private PelinTiedot pelinTiedot;
+    private JButton nappaimet;
+    private JCheckBox toinenPelaaja;
 
     //  @Override
     /**
@@ -49,16 +52,13 @@ public class Asetukset extends JFrame {
      */
     public Asetukset(PelinTiedot pelinTiedot) {
         this.pelinTiedot = pelinTiedot;
-        this.yksi = pelinTiedot.getPelaajaYksi();
-        this.kaksi = pelinTiedot.getPelaajaKaksi();
-        this.pallo = pelinTiedot.getPallo();
         frame = new JFrame("Asetukset");
         try {
             frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:/Users/Tommi/Desktop/pong_game_menu.png")))));
         } catch (IOException e) {
             System.out.println("Ei ollut kuvaa");
         }
-        frame.setPreferredSize(new Dimension(500, 300));
+        frame.setPreferredSize(new Dimension(500, 500));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         luoKomponentit(frame.getContentPane());
         frame.pack();
@@ -84,12 +84,26 @@ public class Asetukset extends JFrame {
      * aikaan.
      */
     public void nappaimet() {
-        KlikkaustenKuuntelijaAsetukset kopioija = new KlikkaustenKuuntelijaAsetukset(pallonNopeus, pallonNopeusTeksti, mailanNopeus, mailanNopeusTeksti, pistemaara, pistemaaraTeksti, paavalikko, lopeta, frame, pelinTiedot);
+        KlikkaustenKuuntelijaAsetukset kopioija = new KlikkaustenKuuntelijaAsetukset(pallonNopeusTeksti, mailanNopeusTeksti, pistemaaraTeksti, frame, pelinTiedot);
         paavalikko.addActionListener(kopioija);
         pallonNopeus.addActionListener(kopioija);
         mailanNopeus.addActionListener(kopioija);
         pistemaara.addActionListener(kopioija);
         lopeta.addActionListener(kopioija);
+        nappaimet.addActionListener(kopioija);
+        toinenPelaaja.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                 if(toinenPelaaja.isSelected()){
+                     pelinTiedot.setTrue();
+                 } 
+                 if (!toinenPelaaja.isSelected()){
+                     pelinTiedot.setFalse();
+                 }
+            }
+        });
+
     }
 
     public JFrame getFrame() {
@@ -104,29 +118,38 @@ public class Asetukset extends JFrame {
      * @return palauttaa paneelin
      */
     private JPanel luoValikko() {
-        JPanel panel = new JPanel(new GridLayout(4, 2));
+        JPanel panel = new JPanel(new GridLayout(6, 2));
         paavalikko = new JButton("Palaa päävalikkoon");
         pallonNopeus = new JButton("Pallon nopeus");
         mailanNopeus = new JButton("Mailan nopeus");
         pistemaara = new JButton("Pistemaara");
         lopeta = new JButton("Lopeta");
-        lopeta.setText("testi");
+        nappaimet = new JButton("Nappaimet");
         pallonNopeusTeksti = new JTextField();
-        pallonNopeusTeksti.setText(pallo.getNopeusX() + "");
+        pallonNopeusTeksti.setText(pelinTiedot.getPallo().getNopeusX() + "");
         mailanNopeusTeksti = new JTextField();
-        mailanNopeusTeksti.setText(yksi.getNopeus() + "");
+        mailanNopeusTeksti.setText(pelinTiedot.getPelaajaYksi().getNopeus() + "");
         pistemaaraTeksti = new JTextField();
         pistemaaraTeksti.setText(pelinTiedot.getPelinPisteet() + "");
+        toinenPelaaja = new JCheckBox("Toinen pelaaja");
+        toinenPelaaja.setName("toinenPelaaja");
         panel.add(pallonNopeus);
         panel.add(pallonNopeusTeksti);
         panel.add(mailanNopeus);
         panel.add(mailanNopeusTeksti);
         panel.add(pistemaara);
         panel.add(pistemaaraTeksti);
+        panel.add(nappaimet);
+        panel.add(toinenPelaaja);
         panel.add(paavalikko);
         panel.add(lopeta);
+        if (pelinTiedot.getOnkoToinenPelaaja()== true){
+            toinenPelaaja.doClick();
+        }
 
         return panel;
     }
+
+
 
 }

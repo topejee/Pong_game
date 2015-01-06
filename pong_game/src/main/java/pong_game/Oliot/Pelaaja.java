@@ -8,13 +8,14 @@ package pong_game.Oliot;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import pong_game.PelinToiminta.Peli;
 
 /**
  *
  * @author Tommi
  */
-public class Pelaaja extends Olio{
+public class Pelaaja extends Olio {
 
     private int nopeus;
     private int korkeus;
@@ -23,6 +24,8 @@ public class Pelaaja extends Olio{
     private int y;
     private int pisteet;
     private Rectangle maila;
+    private int ylaNappain;
+    private int alaNappain;
 
     /**
      * Alustetaan mailan muuttujien arvot
@@ -35,6 +38,8 @@ public class Pelaaja extends Olio{
         this.leveys = 20 * 2;
         this.pisteet = 0;
         maila = new Rectangle(x, y, leveys, korkeus);
+        ylaNappain = (KeyEvent.VK_W);
+        alaNappain = (KeyEvent.VK_S);
     }
 
     public void setMailanKorkeus(int x) {
@@ -81,12 +86,25 @@ public class Pelaaja extends Olio{
         return maila;
     }
 
+    public int getYlaNappain() {
+        return ylaNappain;
+    }
+
+    public int getAlaNappain() {
+        return alaNappain;
+    }
+    public void setYlaNappain(int x){
+        ylaNappain = x;
+    }
+    public void setAlaNappain(int x){
+        alaNappain = x;
+    }
+
     /**
      * Asettaa mailan kuvan paikan
      *
      * @param peli pelattava peli
      */
-
     @Override
     public void liiku(Peli peli) {
         maila.setBounds(x, y, leveys, korkeus);
@@ -97,7 +115,6 @@ public class Pelaaja extends Olio{
      *
      * @param g
      */
-
     @Override
     public void piirra(Graphics g) {
         g.setColor(Color.white);
@@ -107,7 +124,6 @@ public class Pelaaja extends Olio{
     public void getNopeus(int nopeus) {
         this.nopeus = nopeus;
     }
-
 
     @Override
     public void setNopeus(int nopeus) {

@@ -11,11 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import pong_game.Valikkot.Paavalikko2;
+import pong_game.Valikkot.Paavalikko;
 import pong_game.PelinToiminta.PelinTiedot;
 import pong_game.Oliot.Olio;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
+import pong_game.Valikkot.NappaintenVaihtoValikko;
 
 /**
  *
@@ -23,19 +24,14 @@ import pong_game.Oliot.Pallo;
  */
 public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
 
-    private JButton pallonNopeus;
-    private JTextField pallonNopeusTeksti;
-    private JButton mailanNopeus;
-    private JTextField mailanNopeusTeksti;
-    private JButton pistemaara;
-    private JTextField pistemaaraTeksti;
-    private JButton lopeta;
     private JFrame valikko;
-    private JButton paavalikko;
     private Pelaaja yksi;
     private Pelaaja kaksi;
     private Pallo pallo;
     private PelinTiedot pelinTiedot;
+    private JTextField pallonNopeusTeksti;
+    private JTextField mailanNopeusTeksti;
+    private JTextField pistemaaraTeksti;
 
     /**
      *
@@ -54,21 +50,16 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
      * @param kaksi oikean puoleinen maila
      * @param pallo pelissä käytettävä pallo
      */
-    public KlikkaustenKuuntelijaAsetukset(JButton pallonNopeus, JTextField pallonNopeusTeksti, JButton mailanNopeus, JTextField mailanNopeusTeksti, JButton pistemaara, JTextField pistemaaraTeksti, JButton paavalikko, JButton lopeta, JFrame valikko, PelinTiedot pelinTiedot) {
-        this.paavalikko = paavalikko;
-        this.pallonNopeus = pallonNopeus;
+    public KlikkaustenKuuntelijaAsetukset(JTextField pallonNopeusTeksti, JTextField mailanNopeusTeksti, JTextField pistemaaraTeksti, JFrame valikko, PelinTiedot pelinTiedot) {
         this.pallonNopeusTeksti = pallonNopeusTeksti;
-        this.mailanNopeus = pallonNopeus;
-        this.mailanNopeusTeksti = pallonNopeusTeksti;
-        this.pistemaara = pistemaara;
+        this.mailanNopeusTeksti = mailanNopeusTeksti;
         this.pistemaaraTeksti = pistemaaraTeksti;
-        this.lopeta = lopeta;
         this.valikko = valikko;
         this.pelinTiedot = pelinTiedot;
         this.yksi = pelinTiedot.getPelaajaKaksi();
         this.kaksi = pelinTiedot.getPelaajaYksi();
         this.pallo = pelinTiedot.getPallo();
-        this.paavalikko = paavalikko;
+
     }
 
     /**
@@ -79,39 +70,49 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-      //  JButton j = (JButton) ae.getSource();
-        //   j.getText()
-
-        if (ae.getSource() == paavalikko) {
-            valikko.setVisible(false);
-            new Paavalikko2(pelinTiedot).setVisible(true);
+        String teksti = "";
+        JButton jj = null;
+        JTextField j = null;
+        if (ae.getSource() instanceof JButton) {
+            jj = (JButton) ae.getSource();
+            teksti = jj.getText();
         }
-        if (ae.getSource() == pallonNopeus) {
+        if (ae.getSource() instanceof JTextField) {
+            j = (JTextField) ae.getSource();
+            teksti = j.getText();
+        }
+        if (teksti.equals("Palaa päävalikkoon")) {
+            valikko.setVisible(false);
+            new Paavalikko(pelinTiedot).setVisible(true);
+        }
+        if (teksti.equals("Pallon nopeus")) {
             String x = pallonNopeusTeksti.getText();
             int maara = Integer.parseInt(x);
             pallo.setNopeus(maara);
             int maara2 = pallo.getNopeusX();
-            pallonNopeusTeksti.setText(maara2 + "");
         }
-        if (ae.getSource() == mailanNopeus) {
-            String x = pallonNopeusTeksti.getText();
+        if (teksti.equals("Mailan nopeus")) {
+            String x = mailanNopeusTeksti.getText();
             int maara = Integer.parseInt(x);
             yksi.setNopeus(maara);
             kaksi.setNopeus(maara);
             int maara2 = pallo.getNopeusX();
-            pallonNopeusTeksti.setText(maara2 + "");
         }
-        if (ae.getSource() == pistemaara) {
+        if (teksti.equals("Pistemaara")) {
             String x = pistemaaraTeksti.getText();
             int maara = Integer.parseInt(x);
             pelinTiedot.setPistemaara(maara);
             int maara2 = pelinTiedot.getPelinPisteet();
-            pistemaaraTeksti.setText(maara2 + "");
         }
 
-        if (ae.getSource() == lopeta) {
+        if (teksti.equals("Lopeta")) {
             System.exit(0);
 
+        }
+        if (teksti.equals("Nappaimet")) {
+            valikko.setVisible(false);
+            NappaintenVaihtoValikko x = new NappaintenVaihtoValikko(pelinTiedot);
+            x.setVisible(true);
         }
     }
 }

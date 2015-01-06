@@ -7,6 +7,7 @@ package pong_game.Nappaimet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.VK_P;
 import java.awt.event.KeyListener;
 import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
@@ -18,12 +19,13 @@ import pong_game.Oliot.Pallo;
  *
  * @author Tommi
  */
-public class peliNappaimet implements KeyListener {
+public class PeliNappaimet implements KeyListener {
 
-    private Pelaaja yksi;
     private Pelaaja kaksi;
+    private Pelaaja yksi;
     private Pallo pallo;
     private PelinTiedot pelinTiedot;
+    private Peli peli;
 
     /**
      *
@@ -32,12 +34,13 @@ public class peliNappaimet implements KeyListener {
      * @param pallo pelissä oleva pallo
      * @param peli pelattava peli
      */
-    public peliNappaimet(PelinTiedot pelinTiedot, Peli peli) {
+    public PeliNappaimet(PelinTiedot pelinTiedot, Peli peli) {
         this.pelinTiedot = pelinTiedot;
         this.yksi = pelinTiedot.getPelaajaYksi();
         this.kaksi = pelinTiedot.getPelaajaKaksi();
         this.pallo = pelinTiedot.getPallo();
         peli.addKeyListener(this);
+        this.peli = peli;
 
     }
 
@@ -58,17 +61,36 @@ public class peliNappaimet implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         int nappain = e.getKeyCode();
-        if (nappain == KeyEvent.VK_W) {
+        if (pelinTiedot.getOnkoToinenPelaaja() == true) {
+            if (nappain == kaksi.getYlaNappain()) {
+
+                if (kaksi.getY() > 0) {
+                    kaksi.setY(kaksi.getY() - kaksi.getNopeus());
+                }
+            }
+            // nappain == KeyEvent.VK_S
+            if (nappain == kaksi.getAlaNappain()) {
+                if (pelinTiedot.getPelilaudanKorkeus() > (kaksi.getY() + kaksi.getkorkeus() / 1.2)) {
+                    kaksi.setY(kaksi.getY() + kaksi.getNopeus());
+                }
+            }
+        }
+        if (nappain == yksi.getYlaNappain()) {
 
             if (yksi.getY() > 0) {
                 yksi.setY(yksi.getY() - yksi.getNopeus());
             }
         }
-        if (nappain == KeyEvent.VK_S) {
+        // nappain == KeyEvent.VK_S
+        if (nappain == yksi.getAlaNappain()) {
             if (pelinTiedot.getPelilaudanKorkeus() > (yksi.getY() + yksi.getkorkeus() / 1.2)) {
                 yksi.setY(yksi.getY() + yksi.getNopeus());
             }
         }
+        if (nappain == VK_P) {
+            peli.tauko();
+        }
+
     }
 
     @Override
