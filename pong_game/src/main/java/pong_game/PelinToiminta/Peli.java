@@ -11,7 +11,6 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -22,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import pong_game.AI.AI;
-import pong_game.AI.HelppoAI;
 import pong_game.AI.VaikeaAI;
 import pong_game.Oliot.AmmuntaPallo;
 import pong_game.Oliot.Pelaaja;
@@ -48,6 +46,7 @@ public class Peli extends Canvas implements Runnable {
     private boolean tauko;
     private ArrayList<TuhoajaPallo> tuhoajaPallot;
     private ArrayList<AmmuntaPallo> ammuntaPallot;
+    private int nopeus;
 
     /**
      * Alustetaan peli, eli tehdään JFrame, AI, nappaimet, alustetaan mailojen
@@ -58,8 +57,9 @@ public class Peli extends Canvas implements Runnable {
      * @param pallo pelissä oleva pallo
      */
     public Peli(PelinTiedot tiedot) {
-        tuhoajaPallot = new ArrayList<TuhoajaPallo>();
-        ammuntaPallot = new ArrayList<AmmuntaPallo>();
+        tuhoajaPallot = new ArrayList<>();
+        ammuntaPallot = new ArrayList<>();
+        nopeus = 0;
         this.pelinTiedot = tiedot;
         this.pallo = pelinTiedot.getPallo();
         this.pelaajaYksi = pelinTiedot.getPelaajaYksi();
@@ -180,8 +180,8 @@ public class Peli extends Canvas implements Runnable {
         Graphics g = kuvaa.getDrawGraphics();
         g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanLeveys() + 10, pelinTiedot.getPelilaudanKorkeus() + 47, null);
         g.setColor(Color.WHITE);
-        g.drawString("Pelaajan yksi pisteet " + pelaajaYksi.getPisteet(), 60, 10);
-        g.drawString("Pelaajan kaksi pisteet " + pelaajaKaksi.getPisteet(), pelinTiedot.getPelilaudanLeveys() - 200, 10);
+        g.drawString("Pelaajan yksi pisteet " + pelaajaYksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), 60, 10);
+        g.drawString("Uusi peli: R       Päävalikko: M    Tauko: P                       Pelaajan kaksi pisteet " + pelaajaKaksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), pelinTiedot.getPelilaudanLeveys() - 480, 10);
         g.drawLine((pelinTiedot.getPelilaudanLeveys() / 2), 1, (pelinTiedot.getPelilaudanLeveys() / 2), pelinTiedot.getPelilaudanKorkeus() + 47);
         pallo.piirra(g);
         pelaajaYksi.piirra(g);
@@ -324,4 +324,5 @@ public class Peli extends Canvas implements Runnable {
     public JFrame getPeliAlusta() {
         return frame;
     }
+
 }

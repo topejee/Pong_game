@@ -1,14 +1,8 @@
 package pong_game.Valikkot;
 
-import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import pong_game.Nappaimet.KlikkaustenKuuntelija;
-import pong_game.Nappaimet.KlikkaustenKuuntelijaAsetukset;
-import pong_game.Nappaimet.KlikkaustenKuuntelijaAsetukset;
 import pong_game.PelinToiminta.PelinTiedot;
-import pong_game.Oliot.Pelaaja;
-import pong_game.Oliot.Pallo;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,6 +17,7 @@ public class Paavalikko extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
+     * @param pelintiedot sisältää peliin kuuluvat tiedot
      */
     public Paavalikko(PelinTiedot pelintiedot) {
 

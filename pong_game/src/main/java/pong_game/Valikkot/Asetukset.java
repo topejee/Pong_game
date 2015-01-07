@@ -57,11 +57,11 @@ public class Asetukset extends JFrame {
         this.pelinTiedot = pelinTiedot;
         frame = new JFrame("Asetukset");
         try {
-            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:/Users/Tommi/Desktop/pong_game_menu.png")))));
+            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\Users\\Tommi\\pong_game\\pong_game\\src\\main\\java\\pong_game\\Kuva\\pong_game_menu.png")))));
         } catch (IOException e) {
             System.out.println("Ei ollut kuvaa");
         }
-        frame.setPreferredSize(new Dimension(500, 500));
+        frame.setPreferredSize(new Dimension(500, 400));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         luoKomponentit(frame.getContentPane());
         frame.pack();
@@ -147,7 +147,6 @@ public class Asetukset extends JFrame {
     }
 
     public void laatikot() {
-        System.out.println(pelinTiedot.getOnkoAmmusPallo() + ":" + pelinTiedot.getOnkoTuhoajaPallo() + ":" + pelinTiedot.getOnkoToinenPelaaja());
         if (pelinTiedot.getOnkoAmmusPallo() == true) {
             ammusPallo.doClick();
         }

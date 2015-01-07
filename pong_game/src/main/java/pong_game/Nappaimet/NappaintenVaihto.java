@@ -57,41 +57,58 @@ public class NappaintenVaihto implements ActionListener {
 
         if (teksti.equals("vasenPelaajaAlas")) {
             char x = (nappainTeksti.getText()).charAt(0);
+
+            String xx = "";
+            xx += x;
+            xx = xx.toUpperCase();
+            x = xx.charAt(0);
             nappain = (int) x;
+
             pelinTiedot.getPelaajaYksi().setAlaNappain(nappain);
             j.setText(x + "");
-            nappainTeksti.setText("          ");
+            nappainTeksti.setText("");
 
         }
         if (teksti.equals("vasenPelaajaYlos")) {
             char x = (nappainTeksti.getText()).charAt(0);
+            String xx = "";
+            xx += x;
+            xx = xx.toUpperCase();
+            x = xx.charAt(0);
             nappain = (int) x;
             pelinTiedot.getPelaajaYksi().setYlaNappain(nappain);
             j.setText(x + "");
-            nappainTeksti.setText("          ");
+            nappainTeksti.setText("");
 
         }
         if (teksti.equals("oikeaPelaajaAlas")) {
             char x = (nappainTeksti.getText()).charAt(0);
+            String xx = "";
+            xx += x;
+            xx = xx.toUpperCase();
+            x = xx.charAt(0);
             nappain = (int) x;
             pelinTiedot.getPelaajaKaksi().setAlaNappain(nappain);
             j.setText(x + "");
-            nappainTeksti.setText("          ");
+            nappainTeksti.setText("");
 
         }
         if (teksti.equals("oikeaPelaajaYlos")) {
             char x = (nappainTeksti.getText()).charAt(0);
+            String xx = "";
+            xx += x;
+            xx = xx.toUpperCase();
+            x = xx.charAt(0);
             nappain = (int) x;
             pelinTiedot.getPelaajaKaksi().setYlaNappain(nappain);
             j.setText(x + "");
-            nappainTeksti.setText("          ");
+            nappainTeksti.setText("");
 
         }
         if (teksti.equals("asetukset")) {
             valikko.setVisible(false);
             Asetukset x = new Asetukset(pelinTiedot);
         }
-        System.out.println(teksti);
     }
 
 }

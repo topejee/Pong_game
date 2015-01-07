@@ -47,7 +47,6 @@ public class Pallo {
         palloImg.setBounds(x, y, koko, koko);
     }
 
-
     public void setNopeus(int maara) {
         nopeusX = maara;
         nopeusY = maara;
@@ -121,17 +120,23 @@ public class Pallo {
      */
     public void tormaustestiMaila(Peli peli) {
         if (palloImg.intersects(peli.getYks().getMaila()) || palloImg.intersects(peli.getKaksi().getMaila())) {
-
-            nopeusX = -nopeusX;
-            x += nopeusX * 5;
+            if (palloImg.intersects(peli.getYks().getMaila()) && palloImg.getX() <= 38) {
+                nopeusY = -nopeusY;
+                y += nopeusY * 5;
+            } else if (palloImg.intersects(peli.getKaksi().getMaila()) && palloImg.getX() >= 743) {
+                nopeusY = -nopeusY;
+                y += nopeusY * 5;
+            } else {
+                nopeusX = -nopeusX;
+                x += nopeusX * 5;
+            }
         }
-
     }
 
     public void tormaustestiReuna() {
         Random satunnainen = new Random();
         int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus()) + 1;
-        if (x <= koko / 2) {
+        if (x <= 0) {
             peli.getKaksi().lisaaPiste();
             x = pelinTiedot.getPelilaudanLeveys() / 2;
             y = satunnaineLuku;
@@ -140,7 +145,7 @@ public class Pallo {
                 setNopeusX(-getNopeusX());
             }
         }
-        if (x >= pelinTiedot.getPelilaudanLeveys() - (koko / 2)) {
+        if (x >= pelinTiedot.getPelilaudanLeveys()) {
             peli.getYks().lisaaPiste();
             x = pelinTiedot.getPelilaudanLeveys() / 2;
             y = satunnaineLuku;
@@ -176,7 +181,8 @@ public class Pallo {
     public PelinTiedot getPelinTiedot() {
         return pelinTiedot;
     }
-        public void setX(int x) {
+
+    public void setX(int x) {
         this.x = x;
     }
 

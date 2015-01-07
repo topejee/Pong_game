@@ -44,7 +44,7 @@ public class VaikeaAI extends AI {
         if (peli.getPallo().getY() > pelaaja.getY() + pelaaja.getLeveys() / 2) {
             if ((peli.getPelinTiedot().getPelilaudanKorkeus()) > (peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 1.2 )) {
                 liikemaaraInt = liikemaaraRandom.nextInt(10);
-                if (liikemaaraInt > 7) {
+                if (liikemaaraInt > 4) {
                     pelaaja.setY(pelaaja.getY() + x * 2);
                 } else {
                     pelaaja.setY(pelaaja.getY() + x);
@@ -54,7 +54,7 @@ public class VaikeaAI extends AI {
         if (peli.getPallo().getY() < pelaaja.getY() + pelaaja.getLeveys() / 2) {
             if ((peli.getKaksi().getY() > 0)) {
             liikemaaraInt = liikemaaraRandom.nextInt(10);
-            if (liikemaaraInt > 7) {
+            if (liikemaaraInt > 4) {
                 pelaaja.setY(pelaaja.getY() - x * 2);
             } else {
                 pelaaja.setY(pelaaja.getY() - x);
