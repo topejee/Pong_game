@@ -17,7 +17,7 @@ import pong_game.PelinToiminta.PelinTiedot;
  *
  * @author Tommi
  */
-public class Pallo extends Olio {
+public class Pallo {
 
     private int koko;
     private int nopeusX;
@@ -157,20 +157,12 @@ public class Pallo extends Olio {
         }
     }
 
-    public int getX() {
-        return x;
-    }
-
     public void setNopeusX(int x) {
         nopeusX = x;
     }
 
     public void setNopeusY(int x) {
         nopeusY = x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public Rectangle getPalloImg() {
@@ -184,8 +176,7 @@ public class Pallo extends Olio {
     public PelinTiedot getPelinTiedot() {
         return pelinTiedot;
     }
-
-    public void setX(int x) {
+        public void setX(int x) {
         this.x = x;
     }
 
@@ -193,4 +184,11 @@ public class Pallo extends Olio {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

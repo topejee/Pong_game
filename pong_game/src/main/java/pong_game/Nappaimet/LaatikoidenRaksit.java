@@ -7,6 +7,7 @@ package pong_game.Nappaimet;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import pong_game.PelinToiminta.PelinTiedot;
 
@@ -28,28 +29,39 @@ public class LaatikoidenRaksit implements ItemListener {
         this.toinenPelaaja = toinenPelaaja;
     }
 
+
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (toinenPelaaja.isSelected()) {
-            pelinTiedot.setAITrue();
+        JCheckBox j = (JCheckBox) e.getSource();
+        if (j.equals(toinenPelaaja)) {
+            if (!toinenPelaaja.isSelected()) {
+                 pelinTiedot.setAIFalse();
+            }
+            if (toinenPelaaja.isSelected()) {
+                 pelinTiedot.setAITrue();
+            }
+           
         }
-        if (!toinenPelaaja.isSelected()) {
-            pelinTiedot.setAIFalse();
-        }
-        if (tuhoajaPallo.isSelected()) {
-            pelinTiedot.setTuhoajaPalloFalse();
-        }
-        if (!tuhoajaPallo.isSelected()) {
+        
+        if (j.equals(tuhoajaPallo)) {
+            if (tuhoajaPallo.isSelected()) {
+                pelinTiedot.setTuhoajaPalloTrue();
+            }
+            if (!tuhoajaPallo.isSelected()) {
+                pelinTiedot.setTuhoajaPalloFalse();
+            }
 
-            pelinTiedot.setTuhoajaPalloTrue();
         }
-        if (ammusPallo.isSelected()) {
-            pelinTiedot.setAmmusPalloFalse();
-        }
-        if (!ammusPallo.isSelected()) {
+        if (j.equals(ammusPallo)) {
+            if (ammusPallo.isSelected()) {
 
-            pelinTiedot.setAmmusPalloTrue();
+                pelinTiedot.setAmmusPalloTrue();
+
+            }
+            if (!ammusPallo.isSelected()) {
+                pelinTiedot.setAmmusPalloFalse();
+            }
         }
+
     }
-
 }

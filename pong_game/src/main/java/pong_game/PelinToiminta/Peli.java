@@ -25,7 +25,6 @@ import pong_game.AI.AI;
 import pong_game.AI.HelppoAI;
 import pong_game.AI.VaikeaAI;
 import pong_game.Oliot.AmmuntaPallo;
-import pong_game.Oliot.Olio;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
 import pong_game.Oliot.TuhoajaPallo;

@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import pong_game.Valikkot.Paavalikko;
 import pong_game.PelinToiminta.PelinTiedot;
-import pong_game.Oliot.Olio;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
 import pong_game.Valikkot.NappaintenVaihtoValikko;

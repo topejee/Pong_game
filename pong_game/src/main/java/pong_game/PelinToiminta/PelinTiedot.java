@@ -32,8 +32,8 @@ public class PelinTiedot {
         this.pelaajaKaksi = new Pelaaja();
         this.pallo = new Pallo(this);
         toinenPelaaja = false;
-        tuhoajaPallo = false;
-        ammusPallo = false;
+        tuhoajaPallo = true;
+        ammusPallo = true;
     }
 
     public void setAIFalse() {
@@ -45,23 +45,23 @@ public class PelinTiedot {
     }
 
     public void setTuhoajaPalloFalse() {
-        toinenPelaaja = false;
+        tuhoajaPallo = false;
     }
 
     public void setTuhoajaPalloTrue() {
-        toinenPelaaja = true;
+        tuhoajaPallo = true;
     }
 
     public void setAmmusPalloFalse() {
-        toinenPelaaja = false;
+        ammusPallo = false;
     }
 
     public void setAmmusPalloTrue() {
-        toinenPelaaja = true;
+        ammusPallo = true;
     }
 
     public boolean getOnkoAmmusPallo() {
-        return toinenPelaaja;
+        return ammusPallo;
     }
 
     public boolean getOnkoToinenPelaaja() {
@@ -69,7 +69,7 @@ public class PelinTiedot {
     }
 
     public boolean getOnkoTuhoajaPallo() {
-        return toinenPelaaja;
+        return tuhoajaPallo;
     }
 
     public int getPelilaudanKorkeus() {

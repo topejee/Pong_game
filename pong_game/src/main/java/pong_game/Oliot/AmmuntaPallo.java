@@ -28,14 +28,15 @@ public class AmmuntaPallo extends TuhoajaPallo {
         g.fillOval(getX(), getY(), getKoko(), getKoko());
     }
 
+    @Override
     public void tormaustestiMaila(Peli peli) {
         if (getPalloImg().intersects(peli.getYks().getMaila())) {
             setPoistaYksi();
             TuhoajaPalloAmmus pallo = new TuhoajaPalloAmmus(getPelinTiedot());
             pallo.setX(peli.getYks().getX() + 50);
-            pallo.setY(peli.getYks().getY()+peli.getKaksi().getkorkeus()/2);
+            pallo.setY(peli.getYks().getY() + peli.getKaksi().getkorkeus() / 2);
             if (pallo.getNopeusX() < 0) {
-                setNopeusX(-getNopeusX());
+                pallo.setNopeusX(-1 * getNopeusX());
             }
             pallo.setNopeusY(0);
             getPeli().getTuhoajaPallot().add(pallo);
@@ -45,9 +46,9 @@ public class AmmuntaPallo extends TuhoajaPallo {
             setPoistaYksi();
             TuhoajaPalloAmmus pallo = new TuhoajaPalloAmmus(getPelinTiedot());
             pallo.setX(peli.getKaksi().getX() - 50);
-            pallo.setY(peli.getKaksi().getY()+peli.getKaksi().getkorkeus()/2);
+            pallo.setY(peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 2);
             if (pallo.getNopeusX() > 0) {
-                setNopeusX(-getNopeusX());
+                pallo.setNopeusX(-1 * getNopeusX());
             }
             pallo.setNopeusY(0);
             getPeli().getTuhoajaPallot().add(pallo);

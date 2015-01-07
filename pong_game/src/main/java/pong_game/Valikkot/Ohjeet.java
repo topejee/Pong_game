@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pong_game.Oliot;
-
-import java.awt.Graphics;
-import java.awt.geom.Rectangle2D;
-import pong_game.PelinToiminta.Peli;
+package pong_game.Valikkot;
 
 /**
  *
  * @author Tommi
  */
-
-public class Olio {
-
+public class Ohjeet {
+    
 }

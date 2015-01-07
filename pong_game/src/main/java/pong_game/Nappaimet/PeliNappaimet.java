@@ -13,7 +13,6 @@ import static java.awt.event.KeyEvent.VK_R;
 import java.awt.event.KeyListener;
 import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
-import pong_game.Oliot.Olio;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
 import pong_game.Valikkot.Paavalikko;

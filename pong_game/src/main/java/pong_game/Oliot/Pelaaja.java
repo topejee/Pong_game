@@ -15,7 +15,7 @@ import pong_game.PelinToiminta.Peli;
  *
  * @author Tommi
  */
-public class Pelaaja extends Olio {
+public class Pelaaja {
 
     private int nopeus;
     private int korkeus;
@@ -56,22 +56,6 @@ public class Pelaaja extends Olio {
 
     public int getLeveys() {
         return leveys;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public void lisaaPiste() {
@@ -135,5 +119,20 @@ public class Pelaaja extends Olio {
 
     public void nollaaPisteet() {
         pisteet = 0;
+    }
+        public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

@@ -94,13 +94,10 @@ public class Asetukset extends JFrame {
         pistemaara.addActionListener(kopioija);
         lopeta.addActionListener(kopioija);
         nappaimet.addActionListener(kopioija);
-        LaatikoidenRaksit laatikot = new LaatikoidenRaksit(toinenPelaaja,ammusPallo,tuhoajaPallo,pelinTiedot);
+        LaatikoidenRaksit laatikot = new LaatikoidenRaksit(toinenPelaaja, ammusPallo, tuhoajaPallo, pelinTiedot);
         toinenPelaaja.addItemListener(laatikot);
         ammusPallo.addItemListener(laatikot);
         tuhoajaPallo.addItemListener(laatikot);
-
-           
-        
 
     }
 
@@ -150,6 +147,7 @@ public class Asetukset extends JFrame {
     }
 
     public void laatikot() {
+        System.out.println(pelinTiedot.getOnkoAmmusPallo() + ":" + pelinTiedot.getOnkoTuhoajaPallo() + ":" + pelinTiedot.getOnkoToinenPelaaja());
         if (pelinTiedot.getOnkoAmmusPallo() == true) {
             ammusPallo.doClick();
         }
