@@ -7,8 +7,6 @@ package pong_game.Oliot;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
 
@@ -21,13 +19,19 @@ public class AmmuntaPallo extends TuhoajaPallo {
     public AmmuntaPallo(PelinTiedot tiedot) {
         super(tiedot);
     }
-
+/**
+ * piirtää pallon
+ * @param g graphicsin nimi
+ */
     @Override
     public void piirra(Graphics g) {
         g.setColor(Color.ORANGE);
         g.fillOval(getX(), getY(), getKoko(), getKoko());
     }
-
+/**
+ * testaa törmääkö pallo mailaan
+ * @param peli pelattava peli 
+ */
     @Override
     public void tormaustestiMaila(Peli peli) {
         if (getPalloImg().intersects(peli.getYks().getMaila())) {

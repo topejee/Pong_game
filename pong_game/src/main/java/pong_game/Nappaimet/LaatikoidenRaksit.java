@@ -22,27 +22,36 @@ public class LaatikoidenRaksit implements ItemListener {
     private JCheckBox tuhoajaPallo;
     private PelinTiedot pelinTiedot;
 
+/**
+ * 
+ * @param toinenPelaaja boolean joka kertoo onko ihmis vai Ai pelaaja
+ * @param ammusPallo pallo minkä ottaessa saa ammuttua tuhoaja pallon
+ * @param tuhoajaPallo jos osuu mailaa menettää pisteen
+ * @param pelinTiedot kertoo pelin tiedot
+ */
     public LaatikoidenRaksit(JCheckBox toinenPelaaja, JCheckBox ammusPallo, JCheckBox tuhoajaPallo, PelinTiedot pelinTiedot) {
         this.pelinTiedot = pelinTiedot;
         this.ammusPallo = ammusPallo;
         this.tuhoajaPallo = tuhoajaPallo;
         this.toinenPelaaja = toinenPelaaja;
     }
-
-
+/**
+ * Suorittaa asiat mitä tapahtuu kun laatikkoa on painettu ja siitä on poistettu tai laitettu raksi
+ * @param e laatikko mitä on painettu 
+ */
     @Override
     public void itemStateChanged(ItemEvent e) {
         JCheckBox j = (JCheckBox) e.getSource();
         if (j.equals(toinenPelaaja)) {
             if (!toinenPelaaja.isSelected()) {
-                 pelinTiedot.setAIFalse();
+                pelinTiedot.setAIFalse();
             }
             if (toinenPelaaja.isSelected()) {
-                 pelinTiedot.setAITrue();
+                pelinTiedot.setAITrue();
             }
-           
+
         }
-        
+
         if (j.equals(tuhoajaPallo)) {
             if (tuhoajaPallo.isSelected()) {
                 pelinTiedot.setTuhoajaPalloTrue();

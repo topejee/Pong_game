@@ -5,24 +5,10 @@
  */
 package pong_game.Nappaimet;
 
-import java.awt.Canvas;
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.concurrent.CountDownLatch;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 import pong_game.PelinToiminta.PelinTiedot;
 import pong_game.Valikkot.Asetukset;
 import pong_game.Valikkot.NappaintenVaihtoValikko;
@@ -38,7 +24,12 @@ public class NappaintenVaihto implements ActionListener {
     private int nappain;
     private boolean totta;
     private JTextField nappainTeksti;
-
+/**
+ * 
+ * @param NappainTeksti teksti mihin uusi nappula kirjoitetaan
+ * @param valikko valikko missä nappuloiden vaihtotehdään
+ * @param tiedot pelintiedot
+ */
     public NappaintenVaihto(JTextField NappainTeksti, NappaintenVaihtoValikko valikko, PelinTiedot tiedot) {
         this.valikko = valikko;
         this.pelinTiedot = tiedot;
@@ -48,7 +39,10 @@ public class NappaintenVaihto implements ActionListener {
         nappainTeksti.setText("          ");
 
     }
-
+/**
+ * Vaihtaa peli näppäimet
+ * @param ae nappula mitä on painettu
+ */
     @Override
     public void actionPerformed(ActionEvent ae) {
         totta = true;

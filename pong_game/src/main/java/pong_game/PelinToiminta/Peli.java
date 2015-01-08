@@ -181,7 +181,7 @@ public class Peli extends Canvas implements Runnable {
         g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanLeveys() + 10, pelinTiedot.getPelilaudanKorkeus() + 47, null);
         g.setColor(Color.WHITE);
         g.drawString("Pelaajan yksi pisteet " + pelaajaYksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), 60, 10);
-        g.drawString("Uusi peli: R       Päävalikko: M    Tauko: P                       Pelaajan kaksi pisteet " + pelaajaKaksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), pelinTiedot.getPelilaudanLeveys() - 480, 10);
+        g.drawString("Uusi peli: R       Päävalikko: M    Tauko: P                                                          Pelaajan kaksi pisteet " + pelaajaKaksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), pelinTiedot.getPelilaudanLeveys() - 480, 10);
         g.drawLine((pelinTiedot.getPelilaudanLeveys() / 2), 1, (pelinTiedot.getPelilaudanLeveys() / 2), pelinTiedot.getPelilaudanKorkeus() + 47);
         pallo.piirra(g);
         pelaajaYksi.piirra(g);

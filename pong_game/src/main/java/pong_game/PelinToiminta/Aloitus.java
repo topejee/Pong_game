@@ -29,8 +29,8 @@ public class Aloitus {
      */
     public static void main(String[] args) {
 
-         new Paavalikko(new PelinTiedot()).setVisible(true);
-  
+        new Paavalikko(new PelinTiedot()).setVisible(true);
+
     }
 
 }

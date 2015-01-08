@@ -5,7 +5,6 @@
  */
 package pong_game.Oliot;
 
-import java.util.Random;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**

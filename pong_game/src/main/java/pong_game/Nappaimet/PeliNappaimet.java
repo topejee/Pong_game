@@ -31,9 +31,6 @@ public class PeliNappaimet implements KeyListener {
 
     /**
      *
-     * @param yksi vasemman puoleinen maila
-     * @param kaksi oikean puoleinen maila
-     * @param pallo pelissä oleva pallo
      * @param peli pelattava peli
      */
     public PeliNappaimet(PelinTiedot pelinTiedot, Peli peli) {

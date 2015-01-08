@@ -9,7 +9,6 @@ import java.awt.Color;
 import pong_game.PelinToiminta.Peli;
 import java.awt.Rectangle;
 import java.awt.Graphics;
-import static java.lang.Math.random;
 import java.util.Random;
 import pong_game.PelinToiminta.PelinTiedot;
 

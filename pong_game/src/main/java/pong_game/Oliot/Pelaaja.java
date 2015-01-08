@@ -120,7 +120,8 @@ public class Pelaaja {
     public void nollaaPisteet() {
         pisteet = 0;
     }
-        public void setX(int x) {
+
+    public void setX(int x) {
         this.x = x;
     }
 

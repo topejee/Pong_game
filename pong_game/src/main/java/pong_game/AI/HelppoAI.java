@@ -24,7 +24,6 @@ public class HelppoAI extends AI {
      * maila
      * @param peli Peli jota pelataan.
      */
-
     public HelppoAI(Pelaaja maila, Peli peli) {
         pelaaja = maila;
         this.peli = peli;

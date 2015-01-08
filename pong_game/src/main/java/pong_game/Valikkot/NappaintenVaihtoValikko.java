@@ -14,7 +14,7 @@ import pong_game.PelinToiminta.PelinTiedot;
  * @author Tommi
  */
 public class NappaintenVaihtoValikko extends javax.swing.JFrame {
-
+    
     private PelinTiedot pelinTiedot;
 
     /**

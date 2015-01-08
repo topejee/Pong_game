@@ -17,6 +17,7 @@ public class Paavalikko extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
+     *
      * @param pelintiedot sisältää peliin kuuluvat tiedot
      */
     public Paavalikko(PelinTiedot pelintiedot) {
@@ -24,7 +25,7 @@ public class Paavalikko extends javax.swing.JFrame {
         pelinTiedot = pelintiedot;
         initComponents();
         nappaimet();
-        
+
     }
 
     /**
@@ -128,7 +129,7 @@ public class Paavalikko extends javax.swing.JFrame {
      * Metodi valmistaan nappaimien toiminnallisuuden.
      */
     public void nappaimet() {
-        KlikkaustenKuuntelija kopioija = new KlikkaustenKuuntelija(this, pelinTiedot);   
+        KlikkaustenKuuntelija kopioija = new KlikkaustenKuuntelija(this, pelinTiedot);
         pelaa.addActionListener(kopioija);
         asetukset.addActionListener(kopioija);
         lopeta.addActionListener(kopioija);

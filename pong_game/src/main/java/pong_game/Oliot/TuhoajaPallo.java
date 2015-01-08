@@ -38,7 +38,10 @@ public class TuhoajaPallo extends Pallo {
     public void setPoistaYksi() {
         poista = 1;
     }
-
+/**
+ * testaa törmääkö pallo mailaan
+ * @param peli pelattava peli
+ */
     @Override
     public void tormaustestiMaila(Peli peli) {
         if (getPalloImg().intersects(peli.getYks().getMaila())) {

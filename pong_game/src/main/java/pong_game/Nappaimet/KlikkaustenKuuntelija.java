@@ -8,22 +8,17 @@ package pong_game.Nappaimet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import pong_game.Valikkot.Asetukset;
 import pong_game.Valikkot.Paavalikko;
 import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
-import pong_game.Oliot.Pelaaja;
-import pong_game.Oliot.Pallo;
-import pong_game.Valikkot.NappaintenVaihtoValikko;
 
 /**
  *
  * @author Tommi
  */
 public class KlikkaustenKuuntelija implements ActionListener {
-    
+
     private Paavalikko valikko;
     private PelinTiedot pelinTiedot;
 
@@ -54,7 +49,7 @@ public class KlikkaustenKuuntelija implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         JButton j = (JButton) ae.getSource();
         String teksti = j.getText();
-        
+
         if (teksti.equals("Pelaa")) {
             valikko.setVisible(false);
             Peli pelaa = new Peli(pelinTiedot);
@@ -64,10 +59,10 @@ public class KlikkaustenKuuntelija implements ActionListener {
             valikko.setVisible(false);
             Asetukset asetus = new Asetukset(pelinTiedot);
         }
-        
+
         if (teksti.equals("Lopeta")) {
             System.exit(0);
-            
+
         }
     }
 }

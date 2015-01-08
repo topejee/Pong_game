@@ -33,20 +33,12 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
 
     /**
      *
-     * @param pallonNopeus Nappula joka tallentaa valitun pallon nopeuden
      * @param pallonNopeusTeksti teksti alue mihin voi laittaa haluaman pallon
      * nopeuden
-     * @param mailanNopeus nappula joka tallentaa valitun mailan nopeuden
      * @param mailanNopeusTeksti teksti alue mihin voi laittaa haluaman pallon
      * nopeuden
-     * @param pistemaara nappula joka tallentaa valitun pistemaaran
      * @param pistemaaraTeksti teksti alue mihin voi laittaa haluamansa tekstin
-     * @param paavalikko nappula josta pääsee päävalikkoon
-     * @param lopeta nappula joka lopettaa pelin
      * @param valikko nappula josta pääsee asetuksiin
-     * @param yksi vasemman puoleinen maila
-     * @param kaksi oikean puoleinen maila
-     * @param pallo pelissä käytettävä pallo
      */
     public KlikkaustenKuuntelijaAsetukset(JTextField pallonNopeusTeksti, JTextField mailanNopeusTeksti, JTextField pistemaaraTeksti, JFrame valikko, PelinTiedot pelinTiedot) {
         this.pallonNopeusTeksti = pallonNopeusTeksti;

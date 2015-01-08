@@ -30,3 +30,10 @@ Aikaa kulunut: Hyvin paljon (vaikea arvioida aikaa, sisältää monen päivän t
 Mitä tein: Muutin luokkia, metodeja ja lisäsin testejä. Eli ei mitään kovin uutta, mutta koodia on selvennetty.
 
 kulunut aika 6 tuntia
+
+8.1.2015 
+Sisältää monta päivää.
+ 
+Mitä teinä: Hyvin paljon eri asioita pää asiassa koodin korjausta ja lisä ominaisuuksien lisäystä
+
+Aikaa kului hyvin paljon.
