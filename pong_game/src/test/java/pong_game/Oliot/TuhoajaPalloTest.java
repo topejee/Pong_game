@@ -82,20 +82,14 @@ public class TuhoajaPalloTest {
     }
 
     @Test
-    public void tormaako() {
-        pallo.setX(100);
-        pallo.tormaustestiMaila(peli);
-    }
-
-    @Test
     public void tormaaMailaanVasenPiste() {
         int x = peli.getYks().getPisteet();
         peli.getPallo().setX(10);
         peli.getPallo().setY(10);
         peli.getYks().setX(10);
         peli.getYks().setY(10);
-        peli.run();
-        assertEquals(1, pallo.getPoista());
+        peli.getPallo().liiku(peli);
+        assertEquals(0, pallo.getPoista());
     }
 
     @Test
@@ -105,8 +99,8 @@ public class TuhoajaPalloTest {
         peli.getPallo().setY(10);
         peli.getYks().setX(10);
         peli.getYks().setY(10);
-        peli.run();
-        assertEquals(x - 1, peli.getYks().getPisteet());
+        peli.getPallo().liiku(peli);
+        assertEquals(x, peli.getYks().getPisteet());
     }
 
     @Test
@@ -116,8 +110,8 @@ public class TuhoajaPalloTest {
         peli.getPallo().setY(10);
         peli.getKaksi().setX(10);
         peli.getKaksi().setY(10);
-        peli.run();
-        assertEquals(1, pallo.getPoista());
+        peli.getPallo().liiku(peli);
+        assertEquals(0, pallo.getPoista());
     }
 
     @Test
@@ -127,8 +121,9 @@ public class TuhoajaPalloTest {
         peli.getPallo().setY(10);
         peli.getKaksi().setX(10);
         peli.getKaksi().setY(10);
-        peli.run();
-        assertEquals(x - 1, peli.getKaksi().getPisteet());
+        peli.getPallo().liiku(peli);
+        assertEquals(0, peli.getKaksi().getPisteet());
+
     }
 
 }

@@ -52,7 +52,9 @@
                 <version>0.30</version>
                 <configuration>
                     <targetClasses>
-                        <param>pong_game.*</param>
+                        <param>pong_game.Oliot*</param>
+                        <param>pong_game.AI*</param>
+                        <param>pong_game.PelinToiminta*</param>
                     </targetClasses>
                     <targetTests>
                         <param>pong_game.*</param>
