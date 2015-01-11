@@ -13,6 +13,7 @@ import pong_game.PelinToiminta.PelinTiedot;
 
 /**
  * Luokassa tuhoajaPallon toiminnallisuus
+ *
  * @author Tommi
  */
 public class TuhoajaPallo extends Pallo {
@@ -114,5 +115,9 @@ public class TuhoajaPallo extends Pallo {
             poista = 1;
             peli.getPelinTiedot().getPelaajaKaksi().vahennaPiste();
         }
+    }
+
+    public int getpoista() {
+        return poista;
     }
 }

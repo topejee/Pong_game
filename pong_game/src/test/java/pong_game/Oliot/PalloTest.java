@@ -110,4 +110,28 @@ public class PalloTest {
         pallo.kasvataKokoa(-1000);
         assertEquals(0, pallo.getKoko());
     }
+
+    @Test
+    public void tormausMailanNopeus() {
+        int y = pallo.getNopeusY();
+        pallo.tormausMailaNopeus();
+        assertEquals(pallo.getNopeusY(), -y);
+    }
+
+    @Test
+    public void tormausTestiReunaYla() {
+        int y = pallo.getNopeusY();
+        pallo.setY(2000);
+        pallo.tormaustestiReuna();
+        assertEquals(-y, pallo.getNopeusY());
+
+    }
+
+    @Test
+    public void tormausTestiReunaAla() {
+        int y = pallo.getNopeusY();
+        pallo.setY(-2000);
+        pallo.tormaustestiReuna();
+        assertEquals(-y, pallo.getNopeusY());
+    }
 }

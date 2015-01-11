@@ -89,11 +89,34 @@ public class PelaajaTest {
         assertEquals(10, maila.getY());
     }
 
-
     @Test
     public void onkoNopeusOikeaLisatessa() {
         maila.setNopeus(10);
         assertEquals(10, maila.getNopeus());
     }
 
+    @Test
+    public void vahennaPeliPiste() {
+        int x = maila.getPisteet();
+        maila.vahennaPiste();
+        assertEquals(x - 1, maila.getPisteet());
+    }
+
+    @Test
+    public void vaihaAlaNappain() {
+        maila.setAlaNappain(50);
+        assertEquals(50, maila.getAlaNappain());
+    }
+
+    @Test
+    public void vaihaYlaNappain() {
+        maila.setYlaNappain(50);
+        assertEquals(50, maila.getYlaNappain());
+    }
+
+    @Test
+    public void nollaaPeliPisteet() {
+        maila.nollaaPisteet();
+        assertEquals(0, maila.getPisteet());
+    }
 }

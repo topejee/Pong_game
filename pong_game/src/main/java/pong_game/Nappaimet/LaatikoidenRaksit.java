@@ -12,6 +12,7 @@ import pong_game.PelinToiminta.PelinTiedot;
 
 /**
  * Luokassa on Asetukset luokan laatikoiden toiminnallisuus
+ *
  * @author Tommi
  */
 public class LaatikoidenRaksit implements ItemListener {

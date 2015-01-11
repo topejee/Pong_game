@@ -94,9 +94,10 @@ public class PeliNappaimet implements KeyListener {
         Peli peli = new Peli(pelinTiedot);
         peli.aloita();
     }
-/**
- * Metodi vie käyttäjän takaisin päävalikkoon.
- */
+
+    /**
+     * Metodi vie käyttäjän takaisin päävalikkoon.
+     */
     private void valikko() {
         peli.getPeliAlusta().setVisible(false);
         peli.tauko();
@@ -104,10 +105,12 @@ public class PeliNappaimet implements KeyListener {
         pelinTiedot.nollaaPisteet();
         new Paavalikko(pelinTiedot).setVisible(true);
     }
-/**
- * Metodissa tapahtuu toisen pelaajan liikkuminen.
- * @param nappain painettu näppäin
- */
+
+    /**
+     * Metodissa tapahtuu toisen pelaajan liikkuminen.
+     *
+     * @param nappain painettu näppäin
+     */
     private void toinenPelaaja(int nappain) {
         if (pelinTiedot.getOnkoToinenPelaaja()) {
             if (nappain == kaksi.getYlaNappain()) {
@@ -122,10 +125,12 @@ public class PeliNappaimet implements KeyListener {
             }
         }
     }
-/**
- * Metodissa tapahtuu ensimmäisen pelaaja liikkuminen.
- * @param nappain painettu näppäin.
- */
+
+    /**
+     * Metodissa tapahtuu ensimmäisen pelaaja liikkuminen.
+     *
+     * @param nappain painettu näppäin.
+     */
     private void ensimmainenPelaaja(int nappain) {
         if (nappain == yksi.getYlaNappain()) {
             if (yksi.getY() > 0) {

@@ -96,9 +96,11 @@ public class NappaintenVaihto implements ActionListener {
             nappula.setText(x + "");
         }
     }
-/**
- * @return palauttaa totta tai epätotta arvon sen perusteella onko Stringissä kirjain vai ei 
- */
+
+    /**
+     * @return palauttaa totta tai epätotta arvon sen perusteella onko
+     * Stringissä kirjain vai ei
+     */
     public boolean onkoKirjain() {
 
         return nappainTeksti.getText().matches("[a-zA-Z]");

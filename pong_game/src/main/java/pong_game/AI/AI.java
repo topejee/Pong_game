@@ -44,7 +44,7 @@ public class AI {
                 liiku(mailanNopeus());
             }
         } else {
-            if ((peli.getKaksi().getY() > 0)) {
+            if (onkoPeliLaudanReunalla() == 1) {
                 liiku(-mailanNopeus());
             }
         }
@@ -71,13 +71,13 @@ public class AI {
      * @return palauttaa totuus arvon
      */
     public int onkoPeliLaudanReunalla() {
-        if ((peli.getPelinTiedot().getPelilaudanKorkeus()) > ((peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 1.2))) {
+        if ((peli.getPelinTiedot().getPelilaudanKorkeus()) > (peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 1.2) && (peli.getKaksi().getY() > 0)) {
             return 1;
-        } else if (peli.getKaksi().getY() > 0) {
-            return 2;
+
         } else {
-            return 0;
+            return 2;
         }
+
     }
 
     /**
@@ -108,4 +108,7 @@ public class AI {
         }
     }
 
+    public int getliikemaaraArvo() {
+        return liikemaaraArvo;
+    }
 }

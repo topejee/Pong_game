@@ -7,6 +7,7 @@ package pong_game.PelinToiminta;
  */
 /**
  * Luokka aloittaa pelin
+ *
  * @author Tommi
  */
 import pong_game.Valikkot.Paavalikko;

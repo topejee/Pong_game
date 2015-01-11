@@ -28,7 +28,7 @@ Itse peli: aloitetaan päävalikosta ja saa pelintiedot minkä perusteella tekee
 
 AI: on tekoäly joka liikuttaa vasenta mailaa, ellei asetuksita ole pelintietoihin laitettu toista ihmispelajaa.
 
-Pallo: pelissä liikkuva pallo
+Pallo: pelissä liikkuva pallo,  tietää pelinTiedot
 
 Pelaaja: käytännössä maila
 
