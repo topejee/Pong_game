@@ -9,6 +9,7 @@ import pong_game.Oliot.Pallo;
 import pong_game.Oliot.Pelaaja;
 
 /**
+ * Luokassa pelin tiedot
  *
  * @author Tommi
  */

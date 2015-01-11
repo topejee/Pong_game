@@ -12,7 +12,7 @@ import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**
- *
+ * Luokassa tuhoajaPallon toiminnallisuus
  * @author Tommi
  */
 public class TuhoajaPallo extends Pallo {
@@ -20,6 +20,11 @@ public class TuhoajaPallo extends Pallo {
     private int poista;
     private int vanhaNopeusX;
 
+    /**
+     * asettaa tuhoajaPallolle satunnaisen suunnan
+     *
+     * @param tiedot pelin tiedot
+     */
     public TuhoajaPallo(PelinTiedot tiedot) {
         super(tiedot);
         poista = 0;
@@ -40,17 +45,21 @@ public class TuhoajaPallo extends Pallo {
     }
 
     /**
-     * testaa törmääkö pallo mailaan
+     * Metodi testaa törmääkö pallo mailaan
      *
      * @param peli pelattava peli
      */
     @Override
     public void tormaustestiMaila(Peli peli) {
-        vasenMaila(peli);
-        oikeaMaila(peli);
+        vasenmailaTormaus(peli);
+        oikeaMailaTormaus(peli);
 
     }
 
+    /**
+     * Metodi kokeilee törmääkö pallo seinään ja tekee siitä tapahtuvan
+     * seuraamuksen
+     */
     @Override
     public void tormaustestiReuna() {
         if (getX() <= getKoko() / 2) {
@@ -67,6 +76,11 @@ public class TuhoajaPallo extends Pallo {
         }
     }
 
+    /**
+     * piirtää pallon kuvan
+     *
+     * @param g graphics
+     */
     @Override
     public void piirra(Graphics g) {
         g.setColor(Color.RED);
@@ -77,7 +91,12 @@ public class TuhoajaPallo extends Pallo {
         return poista;
     }
 
-    private void vasenMaila(Peli peli) {
+    /**
+     * Metodissa vasempaan mailaan tapahtuva seuraamus
+     *
+     * @param peli pelattava peli
+     */
+    private void vasenmailaTormaus(Peli peli) {
         if (getPalloImg().intersects(peli.getYks().getMaila())) {
             poista = 1;
             peli.getPelinTiedot().getPelaajaYksi().vahennaPiste();
@@ -85,7 +104,12 @@ public class TuhoajaPallo extends Pallo {
         }
     }
 
-    private void oikeaMaila(Peli peli) {
+    /**
+     * Metodissa oikeaan mailaan tapahtuva seuraamus
+     *
+     * @param peli pelattava peli
+     */
+    private void oikeaMailaTormaus(Peli peli) {
         if (getPalloImg().intersects(peli.getKaksi().getMaila())) {
             poista = 1;
             peli.getPelinTiedot().getPelaajaKaksi().vahennaPiste();

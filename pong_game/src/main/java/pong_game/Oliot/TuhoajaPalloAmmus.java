@@ -8,6 +8,7 @@ package pong_game.Oliot;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**
+ * Luokassa tuhoajaPalloAmmuksen toiminnallisuus
  *
  * @author Tommi
  */

@@ -18,6 +18,7 @@ import pong_game.Oliot.Pallo;
 import pong_game.Valikkot.Paavalikko;
 
 /**
+ * Luokassa tapahtuu pelin näppäinten toiminnallisuus
  *
  * @author Tommi
  */
@@ -31,6 +32,7 @@ public class PeliNappaimet implements KeyListener {
 
     /**
      *
+     * @param pelinTiedot pelattavan pelin tiedot
      * @param peli pelattava peli
      */
     public PeliNappaimet(PelinTiedot pelinTiedot, Peli peli) {
@@ -51,8 +53,10 @@ public class PeliNappaimet implements KeyListener {
     }
 
     /**
-     * Liikuttaa ihmis pelajaan mailaa ylös/alas riippuen siitä onko painettu
-     * ylös(w) vai alas(a)
+     * Metodi liikuttaa ihmispelajien mailaa ylös/alas riippuen siitä onko
+     * painettu ylös vai alas nappulaa. Sekä tauttaa pelin, palauttaa
+     * päävalikkoon ja aloittaa uuden pelin, jos kyseisiä nappuloita on
+     * painettu.
      *
      * @param e klikattu näppäin
      */
@@ -79,6 +83,9 @@ public class PeliNappaimet implements KeyListener {
 
     }
 
+    /**
+     * Metodi aloittaa uuden pelin.
+     */
     private void uusiPeli() {
         peli.getPeliAlusta().setVisible(false);
         peli.tauko();
@@ -87,7 +94,9 @@ public class PeliNappaimet implements KeyListener {
         Peli peli = new Peli(pelinTiedot);
         peli.aloita();
     }
-
+/**
+ * Metodi vie käyttäjän takaisin päävalikkoon.
+ */
     private void valikko() {
         peli.getPeliAlusta().setVisible(false);
         peli.tauko();
@@ -95,7 +104,10 @@ public class PeliNappaimet implements KeyListener {
         pelinTiedot.nollaaPisteet();
         new Paavalikko(pelinTiedot).setVisible(true);
     }
-
+/**
+ * Metodissa tapahtuu toisen pelaajan liikkuminen.
+ * @param nappain painettu näppäin
+ */
     private void toinenPelaaja(int nappain) {
         if (pelinTiedot.getOnkoToinenPelaaja()) {
             if (nappain == kaksi.getYlaNappain()) {
@@ -110,7 +122,10 @@ public class PeliNappaimet implements KeyListener {
             }
         }
     }
-
+/**
+ * Metodissa tapahtuu ensimmäisen pelaaja liikkuminen.
+ * @param nappain painettu näppäin.
+ */
     private void ensimmainenPelaaja(int nappain) {
         if (nappain == yksi.getYlaNappain()) {
             if (yksi.getY() > 0) {

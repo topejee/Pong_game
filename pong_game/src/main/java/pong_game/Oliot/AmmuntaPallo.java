@@ -11,6 +11,7 @@ import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**
+ * Luokassa tapahtuu ammuntaPallon toiminnallisuus
  *
  * @author Tommi
  */
@@ -21,7 +22,7 @@ public class AmmuntaPallo extends TuhoajaPallo {
     }
 
     /**
-     * piirtää pallon
+     * Metodi piirtää pallon
      *
      * @param g graphicsin nimi
      */
@@ -32,7 +33,7 @@ public class AmmuntaPallo extends TuhoajaPallo {
     }
 
     /**
-     * testaa törmääkö pallo mailaan
+     * Metodi testaa törmääkö pallo mailaan
      *
      * @param peli pelattava peli
      */
@@ -42,6 +43,11 @@ public class AmmuntaPallo extends TuhoajaPallo {
         osumaVasenMaila(peli);
     }
 
+    /**
+     * Metodissa tapahtuu vasempaan mailaan törmäämisen seuraus.
+     *
+     * @param peli pelattava peli
+     */
     public void osumaVasenMaila(Peli peli) {
         if (getPalloImg().intersects(peli.getYks().getMaila())) {
             TuhoajaPalloAmmus pallo = osuma();
@@ -55,6 +61,11 @@ public class AmmuntaPallo extends TuhoajaPallo {
         }
     }
 
+    /**
+     * Metodissa tapahtuu oikeaan mailaan törmäämisen seuraus.
+     *
+     * @param peli pelattava peli
+     */
     public void osumaOikeaPallo(Peli peli) {
         if (getPalloImg().intersects(peli.getKaksi().getMaila())) {
             TuhoajaPalloAmmus pallo = osuma();
@@ -67,6 +78,12 @@ public class AmmuntaPallo extends TuhoajaPallo {
         }
     }
 
+    /**
+     * Metodissa tapahtuu osumisessa seuraava tapahtuma. Missä AmmuntaPallo
+     * katoaa ja tehdään uusi TuhoajaPallo.
+     *
+     * @return palauttaa uuden tuhoajaPallon
+     */
     public TuhoajaPalloAmmus osuma() {
         setPoistaYksi();
         TuhoajaPalloAmmus pallo = new TuhoajaPalloAmmus(getPelinTiedot());

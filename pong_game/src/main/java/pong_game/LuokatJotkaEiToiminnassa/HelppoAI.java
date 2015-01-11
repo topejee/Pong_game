@@ -5,12 +5,11 @@
  */
 package pong_game.LuokatJotkaEiToiminnassa;
 
-import pong_game.AI.*;
 import pong_game.PelinToiminta.Peli;
 import pong_game.Oliot.Pelaaja;
 
 /**
- *
+ * Luokka tekee AI:n toiminnallisuuden
  * @author Tommi
  */
 public class HelppoAI {

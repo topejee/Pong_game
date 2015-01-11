@@ -15,6 +15,8 @@ import pong_game.Valikkot.Asetukset;
 import pong_game.Valikkot.NappaintenVaihtoValikko;
 
 /**
+ * Luokassa on NappaintenVaihtoValkko luokan näppäinten ja teksti alueiden
+ * toiminnallisuus
  *
  * @author Tommi
  */
@@ -48,7 +50,7 @@ public class NappaintenVaihto implements ActionListener {
     }
 
     /**
-     * Vaihtaa peli näppäimet
+     * Metodi vaihtaa peli näppäimet
      *
      * @param ae nappula mitä on painettu
      */
@@ -79,6 +81,10 @@ public class NappaintenVaihto implements ActionListener {
         }
     }
 
+    /**
+     * Metodi varmistaa, että syötetty arvo on kirjain ja asettaa nappain intiin
+     * uuden nappaimen teksti, sekä vaihtaa tekstit uusiksi.
+     */
     public void nappain() {
         if (onkoKirjain()) {
             x = (nappainTeksti.getText()).charAt(0);
@@ -90,7 +96,9 @@ public class NappaintenVaihto implements ActionListener {
             nappula.setText(x + "");
         }
     }
-
+/**
+ * @return palauttaa totta tai epätotta arvon sen perusteella onko Stringissä kirjain vai ei 
+ */
     public boolean onkoKirjain() {
 
         return nappainTeksti.getText().matches("[a-zA-Z]");

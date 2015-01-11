@@ -11,7 +11,7 @@ import javax.swing.JCheckBox;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**
- *
+ * Luokassa on Asetukset luokan laatikoiden toiminnallisuus
  * @author Tommi
  */
 public class LaatikoidenRaksit implements ItemListener {
@@ -36,8 +36,8 @@ public class LaatikoidenRaksit implements ItemListener {
     }
 
     /**
-     * Suorittaa asiat mitä tapahtuu kun laatikkoa on painettu ja siitä on
-     * poistettu tai laitettu raksi
+     * Metodi suorittaa asiat mitä tapahtuu kun laatikkoa on painettu ja siitä
+     * on poistettu tai laitettu raksi
      *
      * @param e laatikko mitä on painettu
      */
@@ -45,32 +45,58 @@ public class LaatikoidenRaksit implements ItemListener {
     public void itemStateChanged(ItemEvent e) {
         JCheckBox j = (JCheckBox) e.getSource();
         if (j.equals(toinenPelaaja)) {
-            if (!toinenPelaaja.isSelected()) {
-                pelinTiedot.setAIFalse();
-            }
-            if (toinenPelaaja.isSelected()) {
-                pelinTiedot.setAITrue();
-            }
+            toinenPelaaja();
 
         }
 
         if (j.equals(tuhoajaPallo)) {
-            if (tuhoajaPallo.isSelected()) {
-                pelinTiedot.setTuhoajaPalloTrue();
-            }
-            if (!tuhoajaPallo.isSelected()) {
-                pelinTiedot.setTuhoajaPalloFalse();
-            }
+            tuhoajaPallo();
 
         }
         if (j.equals(ammusPallo)) {
-            if (ammusPallo.isSelected()) {
-                pelinTiedot.setAmmusPalloTrue();
-            }
-            if (!ammusPallo.isSelected()) {
-                pelinTiedot.setAmmusPalloFalse();
-            }
+            ammusPallo();
         }
 
+    }
+
+    /**
+     * Metodi laittaa pelinTiedot luokasta AI:n vääräksi tai todeksi. Riippuen
+     * onko laatikossa raksi vai ei.
+     */
+    private void toinenPelaaja() {
+        if (!toinenPelaaja.isSelected()) {
+            pelinTiedot.setAIFalse();
+        }
+        if (toinenPelaaja.isSelected()) {
+            pelinTiedot.setAITrue();
+        }
+    }
+
+    /**
+     * Metodi laittaa pelinTiedot luokasta ammusPallon vääräksi tai todeksi.
+     * Riippuen onko laatikossa raksi vai ei.
+     */
+    private void ammusPallo() {
+
+        if (ammusPallo.isSelected()) {
+            pelinTiedot.setAmmusPalloTrue();
+        }
+        if (!ammusPallo.isSelected()) {
+            pelinTiedot.setAmmusPalloFalse();
+        }
+
+    }
+
+    /**
+     * Metodi laittaa pelinTiedot luokasta tuhoajaPallon vääräksi tai todeksi.
+     * Riippuen onko laatikossa raksi vai ei.
+     */
+    private void tuhoajaPallo() {
+        if (tuhoajaPallo.isSelected()) {
+            pelinTiedot.setTuhoajaPalloTrue();
+        }
+        if (!tuhoajaPallo.isSelected()) {
+            pelinTiedot.setTuhoajaPalloFalse();
+        }
     }
 }

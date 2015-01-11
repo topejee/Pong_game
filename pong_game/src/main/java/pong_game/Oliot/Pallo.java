@@ -13,7 +13,7 @@ import java.util.Random;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**
- *
+ * Luokassa pallon toiminnallisuus
  * @author Tommi
  */
 public class Pallo {
@@ -104,7 +104,7 @@ public class Pallo {
     /**
      * piirtää pallon
      *
-     * @param g
+     * @param g kyseinen graphics
      */
     public void piirra(Graphics g) {
         g.setColor(Color.WHITE);
@@ -112,7 +112,7 @@ public class Pallo {
     }
 
     /**
-     * Testaa törmääkö pallo mailaan.
+     * Metodi testaa törmääkö pallo mailaan ja tekee siitä seuraavan tapahtuman.
      *
      * @param peli pelattava peli
      */
@@ -131,7 +131,9 @@ public class Pallo {
         nopeusY = -nopeusY;
         y += nopeusY * 5;
     }
-
+/**
+ * Metodi testaa törmääkö pallo seinään ja tekee siitä seuravaan tapahtuman.
+ */
     public void tormaustestiReuna() {
         if (x <= 0) {
             peli.getKaksi().lisaaPiste();
@@ -148,7 +150,9 @@ public class Pallo {
             nopeusY = -nopeusY;
         }
     }
-
+/**
+ * Metodi arpoo pallolle uuden paikan.
+ */
     public void arvoPallonPaikka() {
         int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() - 10) + 5;
         x = pelinTiedot.getPelilaudanLeveys() / 2;

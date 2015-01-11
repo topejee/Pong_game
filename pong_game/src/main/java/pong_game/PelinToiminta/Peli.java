@@ -27,6 +27,7 @@ import pong_game.Oliot.Pallo;
 import pong_game.Oliot.TuhoajaPallo;
 
 /**
+ * Luokassa pelin toiminnallisuus
  *
  * @author Tommi
  */
@@ -71,6 +72,9 @@ public class Peli extends Canvas implements Runnable {
 
     }
 
+    /**
+     * Metodi tekee uuden JFramin
+     */
     public void pelinGrafiikka() {
         frame = new JFrame();
         peliLauta = new Dimension(pelinTiedot.getPelilaudanLeveys() + 10, pelinTiedot.getPelilaudanKorkeus() + pallo.getKoko() * 2);
@@ -92,7 +96,7 @@ public class Peli extends Canvas implements Runnable {
 
     /**
      * Metodi on itse pelin toiminnallisuus. metodissa kutstuaan AI:ta tekemään
-     * siirtonsa ja liikutetaan palloa, sekä mailoja. jonka jälkeen kutsutaan
+     * siirtonsa ja liikutetaan palloja, sekä mailoja. jonka jälkeen kutsutaan
      * piirrä metodia
      *
      * @see piirra()
@@ -115,6 +119,11 @@ public class Peli extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Metodi katsoo onko jompikumpi pelaajista voittanut pelin
+     *
+     * @return palauttaa totuusarvon
+     */
     public boolean jokuVoitti() {
         if (pelinTiedot.getPelinPisteet() <= pelaajaYksi.getPisteet() || -pelinTiedot.getPelinPisteet() >= pelaajaKaksi.getPisteet()) {
             voittaja("VASEN PELAAJA");
@@ -128,12 +137,15 @@ public class Peli extends Canvas implements Runnable {
     }
 
     /**
-     * aloittaa pelin
+     * Metodi aloittaa pelin
      */
     public void aloita() {
         new Thread(this).start();
     }
 
+    /**
+     * Metodi tekee tuhoaja pallojen siirrot ja mahdollisesti poistaa palloja
+     */
     public void tuhoajaPallo() {
         if ((pelinTiedot.getOnkoTuhoajaPallo())) {
             lisaaMahdollisestiTuhoajaPallo();
@@ -161,12 +173,18 @@ public class Peli extends Canvas implements Runnable {
             return;
         }
 
-        Graphics g = testi(kuvaa);
+        Graphics g = pelinPiirto(kuvaa);
         g.dispose();
         kuvaa.show();
     }
 
-    private Graphics testi(BufferStrategy kuvaa) {
+    /**
+     * piirtää pelissä tapahtuvat asiat
+     *
+     * @param kuvaa
+     * @return
+     */
+    private Graphics pelinPiirto(BufferStrategy kuvaa) {
         Graphics g = kuvaa.getDrawGraphics();
         g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanLeveys() + 10, pelinTiedot.getPelilaudanKorkeus() + 47, null);
         g.setColor(Color.WHITE);
@@ -232,6 +250,9 @@ public class Peli extends Canvas implements Runnable {
         System.exit(0);
     }
 
+    /**
+     * Metodi pysäyttää pelin tai laittaa pelin jatkumaan.
+     */
     public void tauko() {
         if (tauko) {
             tauko = false;
@@ -242,7 +263,7 @@ public class Peli extends Canvas implements Runnable {
                 createBufferStrategy(3);
                 return;
             }
-            Graphics g = testi(kuvaa);
+            Graphics g = pelinPiirto(kuvaa);
             g.setColor(Color.WHITE);
             g.setFont(new Font("timesRoman", Font.ITALIC, 50));
             g.drawString("TAUKO", 300, 300);
@@ -251,6 +272,9 @@ public class Peli extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * metodi lisää mahdollisesti uuden tuhoajaPallon peliin
+     */
     private void lisaaMahdollisestiTuhoajaPallo() {
         Random x = new Random();
         int satunnainen = x.nextInt(400) + 1;
@@ -260,6 +284,9 @@ public class Peli extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Metodi lisää mahdollisesti uuden tuhoaja pallon peliin
+     */
     private void lisaaMahdollisestiAmmusPallo() {
         Random x = new Random();
         int satunnainen = x.nextInt(400) + 1;
@@ -269,6 +296,9 @@ public class Peli extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Metodissa tehdään pelin ammuntapallolle vaadittavat metodi kutsut
+     */
     private void ammuntaPallo() {
         if ((pelinTiedot.getOnkoAmmusPallo())) {
             lisaaMahdollisestiAmmusPallo();
@@ -289,12 +319,20 @@ public class Peli extends Canvas implements Runnable {
         return frame;
     }
 
+    /**
+     * Metodi liikuttaa valkoista palloa ja mailoja
+     */
     private void liiku() {
         pallo.liiku(this);
         pelaajaKaksi.liiku(this);
         pelaajaYksi.liiku(this);
     }
 
+    /**
+     * piirtää kaikki muut pallot paitsi peli palloa (valkoinen)
+     *
+     * @param g graphics
+     */
     private void muutPallot(Graphics g) {
         if ((pelinTiedot.getOnkoTuhoajaPallo() == true)) {
             for (TuhoajaPallo pallo : tuhoajaPallot) {
@@ -309,6 +347,9 @@ public class Peli extends Canvas implements Runnable {
         }
     }
 
+    /**
+     * Metodi liikuttaa pelin olioita ja tekee piirron
+     */
     private void pelinSiirrotKulku() {
         if ((pelinTiedot.getOnkoToinenPelaaja() == false)) {
             AI.teeSiirto();
@@ -319,6 +360,9 @@ public class Peli extends Canvas implements Runnable {
         piirra();
     }
 
+    /**
+     * Metodi hidastaa pelinkulkua
+     */
     private void hidastus() {
         try {
             Thread.sleep(10);

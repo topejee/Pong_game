@@ -14,7 +14,7 @@ import pong_game.PelinToiminta.Peli;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**
- *
+ * Luokka tekee päävalikon näppäinten toiminnallisuuden
  * @author Tommi
  */
 public class KlikkaustenKuuntelija implements ActionListener {
@@ -23,8 +23,9 @@ public class KlikkaustenKuuntelija implements ActionListener {
     private PelinTiedot pelinTiedot;
 
     /**
-     *
-     *
+     * 
+     * @param valikko päävalikko
+     * @param tiedot pelin tiedot
      */
     public KlikkaustenKuuntelija(Paavalikko valikko, PelinTiedot tiedot) {
         this.valikko = valikko;

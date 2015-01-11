@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import pong_game.PelinToiminta.Peli;
 
 /**
+ * Luokassa on pelaajan mailan toiminnallisuus
  *
  * @author Tommi
  */
@@ -91,7 +92,7 @@ public class Pelaaja {
     }
 
     /**
-     * Asettaa mailan kuvan paikan
+     * Metodi asettaa mailan kuvan paikan
      *
      * @param peli pelattava peli
      */
@@ -100,9 +101,9 @@ public class Pelaaja {
     }
 
     /**
-     * piirtää mailan valittuun paikkaan
+     * Metodi piirtää mailan valittuun paikkaan
      *
-     * @param g
+     * @param g graphics
      */
     public void piirra(Graphics g) {
         g.setColor(Color.white);

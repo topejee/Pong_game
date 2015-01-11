@@ -20,6 +20,7 @@ import pong_game.Nappaimet.LaatikoidenRaksit;
 import pong_game.PelinToiminta.PelinTiedot;
 
 /**
+ * Luokassa tehdään asetukset valikko
  *
  * @author Tommi
  */

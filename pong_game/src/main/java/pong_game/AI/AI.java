@@ -34,24 +34,28 @@ public class AI {
     }
 
     /**
-     * Metodi, jolla VaikeaAI tekee siirtonsa, eli liikuttaa mailaansa. Vaikea
-     * AI tekee siirtonsa pallon koordinaattien perusteella. Kun AI on saanut
-     * selville pallon koordinaatit liikkuu se palloa kohti y akselilla.
+     * Metodi, jolla VaikeaAI tekee siirtonsa, eli liikuttaa mailaansa. AI
+     * käyttää siirtojen tekemiseen luokassa olevia muita metodeja.
      */
     public void teeSiirto() {
         liikemaaraArvo = liikemaaraRandom.nextInt(10);
-        int x = mailanNopeus();
         if (ylosVaiAlas()) {
             if (onkoPeliLaudanReunalla() == 1) {
-                liiku(x);
+                liiku(mailanNopeus());
             }
         } else {
             if ((peli.getKaksi().getY() > 0)) {
-                liiku(-x);
+                liiku(-mailanNopeus());
             }
         }
     }
 
+    /**
+     * Metodi selvittää pallon nopeuden ja antaa sen perusteella positiivisen
+     * nopeus arvon mailalle
+     *
+     * @return palauttaa AI:n nopeuden
+     */
     public int mailanNopeus() {
         int nopeus = peli.getPallo().getNopeusX() * 2 / 3;
         if (nopeus < 0) {
@@ -60,6 +64,12 @@ public class AI {
         return nopeus;
     }
 
+    /**
+     * Metodi selvittää onko maila pelilaudan ylä tai ala reunalla
+     * koordinaattien perusteella
+     *
+     * @return palauttaa totuus arvon
+     */
     public int onkoPeliLaudanReunalla() {
         if ((peli.getPelinTiedot().getPelilaudanKorkeus()) > ((peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 1.2))) {
             return 1;
@@ -70,6 +80,12 @@ public class AI {
         }
     }
 
+    /**
+     * Metodi selivittää pallon koordinaattien perusteella pitääkö AI:n liikkua
+     * alas vai ylös
+     *
+     * @return palauttaa totuus arvon
+     */
     public boolean ylosVaiAlas() {
         if (peli.getPallo().getY() > pelaaja.getY() + pelaaja.getLeveys() / 2) {
             return true;
@@ -78,8 +94,13 @@ public class AI {
         }
     }
 
-    public void liiku(int maara) {
-        int x = maara;
+    /**
+     * Metodi arpoo AI:n liikkumis määrän nopeuden perusteella
+     *
+     * @param nopeus nopeuden lukuarvo
+     */
+    public void liiku(int nopeus) {
+        int x = nopeus;
         if (liikemaaraArvo > 4) {
             pelaaja.setY(pelaaja.getY() + x * 2);
         } else {

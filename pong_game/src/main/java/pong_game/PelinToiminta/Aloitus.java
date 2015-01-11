@@ -6,7 +6,7 @@ package pong_game.PelinToiminta;
  * and open the template in the editor.
  */
 /**
- *
+ * Luokka aloittaa pelin
  * @author Tommi
  */
 import pong_game.Valikkot.Paavalikko;

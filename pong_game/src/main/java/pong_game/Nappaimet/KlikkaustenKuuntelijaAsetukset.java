@@ -17,6 +17,7 @@ import pong_game.Oliot.Pallo;
 import pong_game.Valikkot.NappaintenVaihtoValikko;
 
 /**
+ * Luokkassa tapahtuu Asetus luokan näppäinten/teksti alueiden toiminnallisuus.
  *
  * @author Tommi
  */
@@ -41,6 +42,7 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
      * nopeuden
      * @param pistemaaraTeksti teksti alue mihin voi laittaa haluamansa tekstin
      * @param valikko nappula josta pääsee asetuksiin
+     * @param pelinTiedot sisältää peliin kuulluvat tiedot
      */
     public KlikkaustenKuuntelijaAsetukset(JTextField pallonNopeusTeksti, JTextField mailanNopeusTeksti, JTextField pistemaaraTeksti, JFrame valikko, PelinTiedot pelinTiedot) {
         this.pallonNopeusTeksti = pallonNopeusTeksti;
@@ -57,7 +59,7 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
 
     /**
      * Metodi saa aikaan Asetukset luokassa olevien nappuloiden ja teksti
-     * alueiden toiminnallisuuden
+     * alueiden toiminnallisuuden.
      *
      * @param ae nappula, teksti alue mitä on käytetty
      */
@@ -87,12 +89,20 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
 
     }
 
+    /**
+     * Metodi laittaa Asetukset valikon pois näkyvistä ja tekee uudeen
+     * NappaintenVaihtoValikko, jonka se laittaa näkyviin.
+     */
     private void nappaimet() {
         valikko.setVisible(false);
         NappaintenVaihtoValikko x = new NappaintenVaihtoValikko(pelinTiedot);
         x.setVisible(true);
     }
 
+    /**
+     * Metodi asettaa pelintietoihin uuden pelin pistemäärän. Pistemäärän metodi
+     * saa pistemaaraTeksti nimisestä teksti alueesta.
+     */
     private void pistemaara() {
         if (pistemaaraTeksti.getText().matches("[0-9]+") && pistemaaraTeksti.getText().length() > 1) {
             x = pistemaaraTeksti.getText();
@@ -101,6 +111,10 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
         }
     }
 
+    /**
+     * Metodi asettaa pelintietoihin uuden mailan nopeuden. Nopeuden metodi saa
+     * mailanNopeusTeksti nimisestä teksti alueesta.
+     */
     private void mailanNopeus() {
         if (mailanNopeusTeksti.getText().matches("[0-9]+") && mailanNopeusTeksti.getText().length() > 1) {
             x = mailanNopeusTeksti.getText();
@@ -110,6 +124,10 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
         }
     }
 
+    /**
+     * Metodi asettaa pelintietoihin uuden pallon nopeuden. Nopeuden metodi saa
+     * pallonNopeusTeksti nimisestä teksti alueesta.
+     */
     private void pallonNopeus() {
         if (pallonNopeusTeksti.getText().matches("[0-9]+") && pallonNopeusTeksti.getText().length() > 1) {
             x = pallonNopeusTeksti.getText();
@@ -118,11 +136,22 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
         }
     }
 
+    /**
+     * Metodi laittaa Asetukset valikon pois näkyvistä ja tekee uuden
+     * Päävalikon, jonka se laittaa näkyviin.
+     */
     private void palaaPaavalikkoon() {
         valikko.setVisible(false);
         new Paavalikko(pelinTiedot).setVisible(true);
     }
 
+    /**
+     * Metodi selvittää onko kyseessä tekstialue vai näppäin ja asettaa teksti
+     * nimiseen Stringiin kyseisen tekstialueen tai näppimen nimen.
+     *
+     * @param ae kyseinen actioni
+     * @return palauttaa teksti nimisen Stringin
+     */
     private String tekstiVaiNappain(ActionEvent ae) {
         JButton jj = null;
         JTextField j = null;
