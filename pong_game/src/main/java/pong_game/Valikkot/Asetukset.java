@@ -2,13 +2,10 @@ package pong_game.Valikkot;
 
 import pong_game.Nappaimet.KlikkaustenKuuntelijaAsetukset;
 import java.awt.BorderLayout;
-import java.awt.Checkbox;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.File;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,8 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import pong_game.Nappaimet.LaatikoidenRaksit;
 import pong_game.PelinToiminta.PelinTiedot;
-import pong_game.Oliot.Pelaaja;
-import pong_game.Oliot.Pallo;
 
 /**
  *
@@ -49,15 +44,14 @@ public class Asetukset extends JFrame {
     //  @Override
     /**
      *
-     * @param yksi on vasemman puolinen maila
-     * @param kaksi on oikean puolinen maila
-     * @param pallo on pelissä oleva pallo
+     *
      */
     public Asetukset(PelinTiedot pelinTiedot) {
         this.pelinTiedot = pelinTiedot;
         frame = new JFrame("Asetukset");
         try {
-            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\Users\\Tommi\\pong_game\\pong_game\\src\\main\\java\\pong_game\\Kuva\\pong_game_menu.png")))));
+            BufferedImage kuva = ImageIO.read(getClass().getResourceAsStream("/kuvaa.png"));
+            frame.setContentPane(new JLabel(new ImageIcon(kuva)));
         } catch (IOException e) {
             System.out.println("Ei ollut kuvaa");
         }
@@ -87,6 +81,11 @@ public class Asetukset extends JFrame {
      * aikaan.
      */
     public void nappaimet() {
+        nappaimetNappulat();
+        nappaimetLaatikot();
+    }
+
+    public void nappaimetNappulat() {
         KlikkaustenKuuntelijaAsetukset kopioija = new KlikkaustenKuuntelijaAsetukset(pallonNopeusTeksti, mailanNopeusTeksti, pistemaaraTeksti, frame, pelinTiedot);
         paavalikko.addActionListener(kopioija);
         pallonNopeus.addActionListener(kopioija);
@@ -94,11 +93,13 @@ public class Asetukset extends JFrame {
         pistemaara.addActionListener(kopioija);
         lopeta.addActionListener(kopioija);
         nappaimet.addActionListener(kopioija);
+    }
+
+    public void nappaimetLaatikot() {
         LaatikoidenRaksit laatikot = new LaatikoidenRaksit(toinenPelaaja, ammusPallo, tuhoajaPallo, pelinTiedot);
         toinenPelaaja.addItemListener(laatikot);
         ammusPallo.addItemListener(laatikot);
         tuhoajaPallo.addItemListener(laatikot);
-
     }
 
     public JFrame getFrame() {
@@ -113,7 +114,14 @@ public class Asetukset extends JFrame {
      * @return palauttaa paneelin
      */
     private JPanel luoValikko() {
+        nappaintenAlustus();
         JPanel panel = new JPanel(new GridLayout(6, 2));
+        paneeli(panel);
+        laatikot();
+        return panel;
+    }
+
+    public void nappaintenAlustus() {
         paavalikko = new JButton("Palaa päävalikkoon");
         pallonNopeus = new JButton("Pallon nopeus");
         mailanNopeus = new JButton("Mailan nopeus");
@@ -129,6 +137,9 @@ public class Asetukset extends JFrame {
         toinenPelaaja = new JCheckBox("Toinen pelaaja");
         tuhoajaPallo = new JCheckBox("TuhoajaPallo");
         ammusPallo = new JCheckBox("AmmusPallo");
+    }
+
+    public void paneeli(JPanel panel) {
         panel.add(pallonNopeus);
         panel.add(pallonNopeusTeksti);
         panel.add(mailanNopeus);
@@ -141,9 +152,6 @@ public class Asetukset extends JFrame {
         panel.add(tuhoajaPallo);
         panel.add(paavalikko);
         panel.add(lopeta);
-        laatikot();
-
-        return panel;
     }
 
     public void laatikot() {

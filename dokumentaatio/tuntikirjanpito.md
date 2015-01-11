@@ -34,6 +34,14 @@ kulunut aika 6 tuntia
 8.1.2015 
 Sisältää monta päivää.
  
-Mitä teinä: Hyvin paljon eri asioita pää asiassa koodin korjausta ja lisä ominaisuuksien lisäystä
+Mitä tein: Hyvin paljon eri asioita pää asiassa koodin korjausta ja lisä ominaisuuksien lisäystä
 
 Aikaa kului hyvin paljon.
+
+11.1.2015
+
+Sisältää 8-11.1.2015 välisen ajan
+
+Mitä tein: lisää testejä, pienensin metodeja ja lisäsin niitä. JavaDoc ja koodin korjausta
+
+Aikaa kuluin aika paljon.

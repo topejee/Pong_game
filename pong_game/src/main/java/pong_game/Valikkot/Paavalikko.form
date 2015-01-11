@@ -106,11 +106,14 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Tommi\Desktop\pong_game_menu.png"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;jLabel1&quot;" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel()"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="try {&#xa;            BufferedImage kuva = ImageIO.read(getClass().getResourceAsStream(&quot;/kuvaa.png&quot;));&#xa;            jLabel1.setIcon(new ImageIcon(kuva));&#xa;        } catch (IOException e) {&#xa;            System.out.println(&quot;Ei ollut kuvaa&quot;);&#xa;        }"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

@@ -19,45 +19,58 @@ public class AmmuntaPallo extends TuhoajaPallo {
     public AmmuntaPallo(PelinTiedot tiedot) {
         super(tiedot);
     }
-/**
- * piirtää pallon
- * @param g graphicsin nimi
- */
+
+    /**
+     * piirtää pallon
+     *
+     * @param g graphicsin nimi
+     */
     @Override
     public void piirra(Graphics g) {
         g.setColor(Color.ORANGE);
         g.fillOval(getX(), getY(), getKoko(), getKoko());
     }
-/**
- * testaa törmääkö pallo mailaan
- * @param peli pelattava peli 
- */
+
+    /**
+     * testaa törmääkö pallo mailaan
+     *
+     * @param peli pelattava peli
+     */
     @Override
     public void tormaustestiMaila(Peli peli) {
+        osumaOikeaPallo(peli);
+        osumaVasenMaila(peli);
+    }
+
+    public void osumaVasenMaila(Peli peli) {
         if (getPalloImg().intersects(peli.getYks().getMaila())) {
-            setPoistaYksi();
-            TuhoajaPalloAmmus pallo = new TuhoajaPalloAmmus(getPelinTiedot());
+            TuhoajaPalloAmmus pallo = osuma();
             pallo.setX(peli.getYks().getX() + 50);
             pallo.setY(peli.getYks().getY() + peli.getKaksi().getkorkeus() / 2);
             if (pallo.getNopeusX() < 0) {
                 pallo.setNopeusX(-1 * getNopeusX());
             }
-            pallo.setNopeusY(0);
             getPeli().getTuhoajaPallot().add(pallo);
 
         }
+    }
+
+    public void osumaOikeaPallo(Peli peli) {
         if (getPalloImg().intersects(peli.getKaksi().getMaila())) {
-            setPoistaYksi();
-            TuhoajaPalloAmmus pallo = new TuhoajaPalloAmmus(getPelinTiedot());
+            TuhoajaPalloAmmus pallo = osuma();
             pallo.setX(peli.getKaksi().getX() - 50);
             pallo.setY(peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 2);
             if (pallo.getNopeusX() > 0) {
                 pallo.setNopeusX(-1 * getNopeusX());
             }
-            pallo.setNopeusY(0);
             getPeli().getTuhoajaPallot().add(pallo);
-
         }
+    }
 
+    public TuhoajaPalloAmmus osuma() {
+        setPoistaYksi();
+        TuhoajaPalloAmmus pallo = new TuhoajaPalloAmmus(getPelinTiedot());
+        pallo.setNopeusY(0);
+        return pallo;
     }
 }

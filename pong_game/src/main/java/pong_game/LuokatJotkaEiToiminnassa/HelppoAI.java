@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pong_game.AI;
+package pong_game.LuokatJotkaEiToiminnassa;
 
+import pong_game.AI.*;
 import pong_game.PelinToiminta.Peli;
 import pong_game.Oliot.Pelaaja;
 
@@ -12,7 +13,7 @@ import pong_game.Oliot.Pelaaja;
  *
  * @author Tommi
  */
-public class HelppoAI extends AI {
+public class HelppoAI {
 
     private Pelaaja pelaaja;
     private int x;

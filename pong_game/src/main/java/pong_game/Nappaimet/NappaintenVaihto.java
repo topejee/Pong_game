@@ -7,6 +7,7 @@ package pong_game.Nappaimet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.awt.event.KeyEvent.VK_W;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import pong_game.PelinToiminta.PelinTiedot;
@@ -24,80 +25,53 @@ public class NappaintenVaihto implements ActionListener {
     private int nappain;
     private boolean totta;
     private JTextField nappainTeksti;
-/**
- * 
- * @param NappainTeksti teksti mihin uusi nappula kirjoitetaan
- * @param valikko valikko missä nappuloiden vaihtotehdään
- * @param tiedot pelintiedot
- */
+    private char x;
+    private JButton nappula;
+    private String teksti;
+    private Object VK;
+
+    /**
+     *
+     * @param NappainTeksti teksti mihin uusi nappula kirjoitetaan
+     * @param valikko valikko missä nappuloiden vaihtotehdään
+     * @param tiedot pelintiedot
+     */
     public NappaintenVaihto(JTextField NappainTeksti, NappaintenVaihtoValikko valikko, PelinTiedot tiedot) {
         this.valikko = valikko;
         this.pelinTiedot = tiedot;
-        this.nappain = 0;
+        this.nappain = VK_W;
         this.totta = true;
         this.nappainTeksti = NappainTeksti;
-        nappainTeksti.setText("          ");
-
+        this.nappainTeksti.setText("          ");
+        this.nappula = null;
+        this.teksti = "";
     }
-/**
- * Vaihtaa peli näppäimet
- * @param ae nappula mitä on painettu
- */
+
+    /**
+     * Vaihtaa peli näppäimet
+     *
+     * @param ae nappula mitä on painettu
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         totta = true;
-        JButton j = (JButton) ae.getSource();
-        String teksti = j.getName();
-
+        nappula = (JButton) ae.getSource();
+        teksti = nappula.getName();
         if (teksti.equals("vasenPelaajaAlas")) {
-            char x = (nappainTeksti.getText()).charAt(0);
-
-            String xx = "";
-            xx += x;
-            xx = xx.toUpperCase();
-            x = xx.charAt(0);
-            nappain = (int) x;
-
+            nappain();
             pelinTiedot.getPelaajaYksi().setAlaNappain(nappain);
-            j.setText(x + "");
-            nappainTeksti.setText("");
-
         }
         if (teksti.equals("vasenPelaajaYlos")) {
-            char x = (nappainTeksti.getText()).charAt(0);
-            String xx = "";
-            xx += x;
-            xx = xx.toUpperCase();
-            x = xx.charAt(0);
-            nappain = (int) x;
+            nappain();
             pelinTiedot.getPelaajaYksi().setYlaNappain(nappain);
-            j.setText(x + "");
-            nappainTeksti.setText("");
-
         }
         if (teksti.equals("oikeaPelaajaAlas")) {
-            char x = (nappainTeksti.getText()).charAt(0);
-            String xx = "";
-            xx += x;
-            xx = xx.toUpperCase();
-            x = xx.charAt(0);
-            nappain = (int) x;
+            nappain();
             pelinTiedot.getPelaajaKaksi().setAlaNappain(nappain);
-            j.setText(x + "");
-            nappainTeksti.setText("");
-
         }
         if (teksti.equals("oikeaPelaajaYlos")) {
-            char x = (nappainTeksti.getText()).charAt(0);
-            String xx = "";
-            xx += x;
-            xx = xx.toUpperCase();
-            x = xx.charAt(0);
-            nappain = (int) x;
+            nappain();
             pelinTiedot.getPelaajaKaksi().setYlaNappain(nappain);
-            j.setText(x + "");
-            nappainTeksti.setText("");
-
         }
         if (teksti.equals("asetukset")) {
             valikko.setVisible(false);
@@ -105,4 +79,20 @@ public class NappaintenVaihto implements ActionListener {
         }
     }
 
+    public void nappain() {
+        if (onkoKirjain()) {
+            x = (nappainTeksti.getText()).charAt(0);
+            String xx = "";
+            xx += x;
+            xx = xx.toUpperCase();
+            x = xx.charAt(0);
+            nappain = (int) x;
+            nappula.setText(x + "");
+        }
+    }
+
+    public boolean onkoKirjain() {
+
+        return nappainTeksti.getText().matches("[a-zA-Z]");
+    }
 }

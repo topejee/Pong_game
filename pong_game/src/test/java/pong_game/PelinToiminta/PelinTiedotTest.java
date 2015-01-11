@@ -59,7 +59,7 @@ public class PelinTiedotTest {
 
     @Test
     public void peliPistemaarat() {
-       pelinTiedot.setPistemaara(10);
+        pelinTiedot.setPistemaara(10);
         assertEquals(10, pelinTiedot.getPelinPisteet());
     }
 }

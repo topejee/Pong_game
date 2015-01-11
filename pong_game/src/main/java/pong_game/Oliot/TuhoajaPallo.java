@@ -38,21 +38,16 @@ public class TuhoajaPallo extends Pallo {
     public void setPoistaYksi() {
         poista = 1;
     }
-/**
- * testaa törmääkö pallo mailaan
- * @param peli pelattava peli
- */
+
+    /**
+     * testaa törmääkö pallo mailaan
+     *
+     * @param peli pelattava peli
+     */
     @Override
     public void tormaustestiMaila(Peli peli) {
-        if (getPalloImg().intersects(peli.getYks().getMaila())) {
-            poista = 1;
-            peli.getPelinTiedot().getPelaajaYksi().vahennaPiste();
-
-        }
-        if (getPalloImg().intersects(peli.getKaksi().getMaila())) {
-            poista = 1;
-            peli.getPelinTiedot().getPelaajaKaksi().vahennaPiste();
-        }
+        vasenMaila(peli);
+        oikeaMaila(peli);
 
     }
 
@@ -80,5 +75,20 @@ public class TuhoajaPallo extends Pallo {
 
     public int getPoista() {
         return poista;
+    }
+
+    private void vasenMaila(Peli peli) {
+        if (getPalloImg().intersects(peli.getYks().getMaila())) {
+            poista = 1;
+            peli.getPelinTiedot().getPelaajaYksi().vahennaPiste();
+
+        }
+    }
+
+    private void oikeaMaila(Peli peli) {
+        if (getPalloImg().intersects(peli.getKaksi().getMaila())) {
+            poista = 1;
+            peli.getPelinTiedot().getPelaajaKaksi().vahennaPiste();
+        }
     }
 }

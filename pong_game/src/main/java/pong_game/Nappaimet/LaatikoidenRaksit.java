@@ -7,7 +7,6 @@ package pong_game.Nappaimet;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import pong_game.PelinToiminta.PelinTiedot;
 
@@ -22,23 +21,26 @@ public class LaatikoidenRaksit implements ItemListener {
     private JCheckBox tuhoajaPallo;
     private PelinTiedot pelinTiedot;
 
-/**
- * 
- * @param toinenPelaaja boolean joka kertoo onko ihmis vai Ai pelaaja
- * @param ammusPallo pallo minkä ottaessa saa ammuttua tuhoaja pallon
- * @param tuhoajaPallo jos osuu mailaa menettää pisteen
- * @param pelinTiedot kertoo pelin tiedot
- */
+    /**
+     *
+     * @param toinenPelaaja boolean joka kertoo onko ihmis vai Ai pelaaja
+     * @param ammusPallo pallo minkä ottaessa saa ammuttua tuhoaja pallon
+     * @param tuhoajaPallo jos osuu mailaa menettää pisteen
+     * @param pelinTiedot kertoo pelin tiedot
+     */
     public LaatikoidenRaksit(JCheckBox toinenPelaaja, JCheckBox ammusPallo, JCheckBox tuhoajaPallo, PelinTiedot pelinTiedot) {
         this.pelinTiedot = pelinTiedot;
         this.ammusPallo = ammusPallo;
         this.tuhoajaPallo = tuhoajaPallo;
         this.toinenPelaaja = toinenPelaaja;
     }
-/**
- * Suorittaa asiat mitä tapahtuu kun laatikkoa on painettu ja siitä on poistettu tai laitettu raksi
- * @param e laatikko mitä on painettu 
- */
+
+    /**
+     * Suorittaa asiat mitä tapahtuu kun laatikkoa on painettu ja siitä on
+     * poistettu tai laitettu raksi
+     *
+     * @param e laatikko mitä on painettu
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
         JCheckBox j = (JCheckBox) e.getSource();
@@ -63,9 +65,7 @@ public class LaatikoidenRaksit implements ItemListener {
         }
         if (j.equals(ammusPallo)) {
             if (ammusPallo.isSelected()) {
-
                 pelinTiedot.setAmmusPalloTrue();
-
             }
             if (!ammusPallo.isSelected()) {
                 pelinTiedot.setAmmusPalloFalse();

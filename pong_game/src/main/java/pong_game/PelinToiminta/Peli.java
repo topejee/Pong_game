@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import pong_game.AI.AI;
-import pong_game.AI.VaikeaAI;
 import pong_game.Oliot.AmmuntaPallo;
 import pong_game.Oliot.Pelaaja;
 import pong_game.Oliot.Pallo;
@@ -52,9 +51,6 @@ public class Peli extends Canvas implements Runnable {
      * Alustetaan peli, eli tehdään JFrame, AI, nappaimet, alustetaan mailojen
      * aloitus paikka
      *
-     * @param yksi pelin vasen maila
-     * @param kaksi pelin oikea maila
-     * @param pallo pelissä oleva pallo
      */
     public Peli(PelinTiedot tiedot) {
         tuhoajaPallot = new ArrayList<>();
@@ -65,7 +61,7 @@ public class Peli extends Canvas implements Runnable {
         this.pelaajaYksi = pelinTiedot.getPelaajaYksi();
         this.pelaajaKaksi = pelinTiedot.getPelaajaKaksi();
         if (pelinTiedot.getOnkoToinenPelaaja() == false) {
-            this.AI = new VaikeaAI(pelaajaKaksi, this);
+            this.AI = new AI(pelaajaKaksi, this);
         }
         pelaajaYksi.setX(1);
         pelaajaYksi.setY(pelinTiedot.getPelilaudanKorkeus() / 2);
@@ -113,22 +109,9 @@ public class Peli extends Canvas implements Runnable {
                 if (jokuVoitti()) {
                     break;
                 }
-                if ((pelinTiedot.getOnkoToinenPelaaja() == false)) {
-                    AI.teeSiirto();
-                }
-                ammuntaPallo();
-                tuhoajaPallo();
-                pallo.liiku(this);
-                pelaajaKaksi.liiku(this);
-                pelaajaYksi.liiku(this);
-                piirra();
-
+                pelinSiirrotKulku();
             }
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Peli.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            hidastus();
         }
     }
 
@@ -152,7 +135,7 @@ public class Peli extends Canvas implements Runnable {
     }
 
     public void tuhoajaPallo() {
-        if ((pelinTiedot.getOnkoTuhoajaPallo() == true)) {
+        if ((pelinTiedot.getOnkoTuhoajaPallo())) {
             lisaaMahdollisestiTuhoajaPallo();
             for (TuhoajaPallo pallo : tuhoajaPallot) {
                 pallo.liiku(this);
@@ -177,29 +160,25 @@ public class Peli extends Canvas implements Runnable {
             createBufferStrategy(3);
             return;
         }
+
+        Graphics g = testi(kuvaa);
+        g.dispose();
+        kuvaa.show();
+    }
+
+    private Graphics testi(BufferStrategy kuvaa) {
         Graphics g = kuvaa.getDrawGraphics();
         g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanLeveys() + 10, pelinTiedot.getPelilaudanKorkeus() + 47, null);
         g.setColor(Color.WHITE);
         g.drawString("Pelaajan yksi pisteet " + pelaajaYksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), 60, 10);
-        g.drawString("Uusi peli: R       Päävalikko: M    Tauko: P                                                          Pelaajan kaksi pisteet " + pelaajaKaksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), pelinTiedot.getPelilaudanLeveys() - 480, 10);
+        g.drawString("Uusi peli: R       Päävalikko: M    Tauko: P                             Pelaajan kaksi pisteet " + pelaajaKaksi.getPisteet() + "/" + pelinTiedot.getPelinPisteet(), pelinTiedot.getPelilaudanLeveys() - 480, 10);
         g.drawLine((pelinTiedot.getPelilaudanLeveys() / 2), 1, (pelinTiedot.getPelilaudanLeveys() / 2), pelinTiedot.getPelilaudanKorkeus() + 47);
         pallo.piirra(g);
         pelaajaYksi.piirra(g);
         pelaajaKaksi.piirra(g);
         g.setColor(Color.RED);
-        if ((pelinTiedot.getOnkoTuhoajaPallo() == true)) {
-            for (TuhoajaPallo pallo : tuhoajaPallot) {
-                pallo.piirra(g);
-            }
-        }
-        g.setColor(Color.ORANGE);
-        if ((pelinTiedot.getOnkoAmmusPallo() == true)) {
-            for (AmmuntaPallo pallo : ammuntaPallot) {
-                pallo.piirra(g);
-            }
-        }
-        g.dispose();
-        kuvaa.show();
+        muutPallot(g);
+        return g;
     }
 
     /**
@@ -215,12 +194,17 @@ public class Peli extends Canvas implements Runnable {
             return;
         }
         Graphics g = kuvaa.getDrawGraphics();
-        g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanKorkeus() + 10, pelinTiedot.getPelilaudanKorkeus() + 10, null);
+        g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanKorkeus() + 1000, pelinTiedot.getPelilaudanKorkeus() + 1000, null);
         g.setColor(Color.WHITE);
         g.setFont(new Font("timesRoman", Font.BOLD, 20));
         g.drawString("PELI ON LOPPUNUT, VOITTAJA ON " + x, 20, 20);
         g.dispose();
         kuvaa.show();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Peli.class.getName()).log(Level.SEVERE, null, ex);
+        }
         lopeta();
     }
 
@@ -249,7 +233,7 @@ public class Peli extends Canvas implements Runnable {
     }
 
     public void tauko() {
-        if (tauko == true) {
+        if (tauko) {
             tauko = false;
         } else {
             tauko = true;
@@ -258,27 +242,7 @@ public class Peli extends Canvas implements Runnable {
                 createBufferStrategy(3);
                 return;
             }
-            Graphics g = kuvaa.getDrawGraphics();
-            g.drawImage(kuva, 0, 0, pelinTiedot.getPelilaudanLeveys() + 10, pelinTiedot.getPelilaudanKorkeus() + 47, null);
-            g.setColor(Color.WHITE);
-            g.drawString("Pelaajan yksi pisteet " + pelaajaYksi.getPisteet(), 60, 10);
-            g.drawString("Pelaajan kaksi pisteet " + pelaajaKaksi.getPisteet(), pelinTiedot.getPelilaudanLeveys() - 200, 10);
-            g.drawLine((pelinTiedot.getPelilaudanLeveys() / 2), 1, (pelinTiedot.getPelilaudanLeveys() / 2), pelinTiedot.getPelilaudanKorkeus() + 47);
-            pallo.piirra(g);
-            pelaajaYksi.piirra(g);
-            pelaajaKaksi.piirra(g);
-            g.setColor(Color.RED);
-            if ((pelinTiedot.getOnkoTuhoajaPallo() == true)) {
-                for (TuhoajaPallo pallo : tuhoajaPallot) {
-                    pallo.piirra(g);
-                }
-            }
-            g.setColor(Color.ORANGE);
-            if ((pelinTiedot.getOnkoAmmusPallo() == true)) {
-                for (AmmuntaPallo pallo : ammuntaPallot) {
-                    pallo.piirra(g);
-                }
-            }
+            Graphics g = testi(kuvaa);
             g.setColor(Color.WHITE);
             g.setFont(new Font("timesRoman", Font.ITALIC, 50));
             g.drawString("TAUKO", 300, 300);
@@ -306,7 +270,7 @@ public class Peli extends Canvas implements Runnable {
     }
 
     private void ammuntaPallo() {
-        if ((pelinTiedot.getOnkoAmmusPallo() == true)) {
+        if ((pelinTiedot.getOnkoAmmusPallo())) {
             lisaaMahdollisestiAmmusPallo();
             for (AmmuntaPallo pallo : ammuntaPallot) {
                 pallo.liiku(this);
@@ -323,6 +287,44 @@ public class Peli extends Canvas implements Runnable {
 
     public JFrame getPeliAlusta() {
         return frame;
+    }
+
+    private void liiku() {
+        pallo.liiku(this);
+        pelaajaKaksi.liiku(this);
+        pelaajaYksi.liiku(this);
+    }
+
+    private void muutPallot(Graphics g) {
+        if ((pelinTiedot.getOnkoTuhoajaPallo() == true)) {
+            for (TuhoajaPallo pallo : tuhoajaPallot) {
+                pallo.piirra(g);
+            }
+        }
+        g.setColor(Color.ORANGE);
+        if ((pelinTiedot.getOnkoAmmusPallo() == true)) {
+            for (AmmuntaPallo pallo : ammuntaPallot) {
+                pallo.piirra(g);
+            }
+        }
+    }
+
+    private void pelinSiirrotKulku() {
+        if ((pelinTiedot.getOnkoToinenPelaaja() == false)) {
+            AI.teeSiirto();
+        }
+        ammuntaPallo();
+        tuhoajaPallo();
+        liiku();
+        piirra();
+    }
+
+    private void hidastus() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Peli.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -24,14 +24,7 @@ public class KlikkaustenKuuntelija implements ActionListener {
 
     /**
      *
-     * @param plus pelaa nappula, jolla aloitetaan peli
-     * @param miinus Asetukset nappula, jolla mennään asetuksiin
-     * @param zed Lopettaa pelin
-     * @param valikko päävalikko
-     * @param tiedot sisältää pelin tiedot
-     * @param yksi vasemman puolinen maila
-     * @param kaksi oikean puolinen maila
-     * @param pallo pelissä oleva pallo
+     *
      */
     public KlikkaustenKuuntelija(Paavalikko valikko, PelinTiedot tiedot) {
         this.valikko = valikko;

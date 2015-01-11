@@ -40,8 +40,7 @@ public class Pallo {
         nopeusY = 2;
         x = pelinTiedot.getPelilaudanLeveys() / 2;
         satunnainen = new Random();
-        int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() + 1);
-        y = satunnaineLuku;
+        y = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() + 1);
         palloImg = new Rectangle(x, y, koko, koko);
         palloImg.setBounds(x, y, koko, koko);
     }
@@ -119,12 +118,8 @@ public class Pallo {
      */
     public void tormaustestiMaila(Peli peli) {
         if (palloImg.intersects(peli.getYks().getMaila()) || palloImg.intersects(peli.getKaksi().getMaila())) {
-            if (palloImg.intersects(peli.getYks().getMaila()) && palloImg.getX() <= 38) {
-                nopeusY = -nopeusY;
-                y += nopeusY * 5;
-            } else if (palloImg.intersects(peli.getKaksi().getMaila()) && palloImg.getX() >= 743) {
-                nopeusY = -nopeusY;
-                y += nopeusY * 5;
+            if ((palloImg.intersects(peli.getYks().getMaila()) && palloImg.getX() <= 38) || (palloImg.intersects(peli.getKaksi().getMaila()) && palloImg.getX() >= 743)) {
+                tormausMailaNopeus();
             } else {
                 nopeusX = -nopeusX;
                 x += nopeusX * 5;
@@ -132,32 +127,35 @@ public class Pallo {
         }
     }
 
+    public void tormausMailaNopeus() {
+        nopeusY = -nopeusY;
+        y += nopeusY * 5;
+    }
+
     public void tormaustestiReuna() {
-        Random satunnainen = new Random();
-        int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus()) + 1;
         if (x <= 0) {
             peli.getKaksi().lisaaPiste();
-            x = pelinTiedot.getPelilaudanLeveys() / 2;
-            y = satunnaineLuku;
-            int yy = satunnainen.nextInt(1) + 1;
-            if (yy == 1) {
-                setNopeusX(-getNopeusX());
-            }
+            arvoPallonPaikka();
         }
         if (x >= pelinTiedot.getPelilaudanLeveys()) {
             peli.getYks().lisaaPiste();
-            x = pelinTiedot.getPelilaudanLeveys() / 2;
-            y = satunnaineLuku;
-            int yy = satunnainen.nextInt(1) + 1;
-            if (yy == 1) {
-                setNopeusX(-getNopeusX());
-            }
+            arvoPallonPaikka();
         }
         if (y <= 0) {
             nopeusY = -nopeusY;
         }
         if (y >= pelinTiedot.getPelilaudanKorkeus() - (koko / 2)) {
             nopeusY = -nopeusY;
+        }
+    }
+
+    public void arvoPallonPaikka() {
+        int satunnaineLuku = satunnainen.nextInt(pelinTiedot.getPelilaudanKorkeus() - 10) + 5;
+        x = pelinTiedot.getPelilaudanLeveys() / 2;
+        y = satunnaineLuku;
+        int yy = satunnainen.nextInt(1) + 1;
+        if (yy == 1) {
+            setNopeusX(-getNopeusX());
         }
     }
 

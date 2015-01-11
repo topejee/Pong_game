@@ -5,7 +5,6 @@
  */
 package pong_game.Valikkot;
 
-import pong_game.Nappaimet.KlikkaustenKuuntelija;
 import pong_game.Nappaimet.NappaintenVaihto;
 import pong_game.PelinToiminta.PelinTiedot;
 
@@ -14,7 +13,7 @@ import pong_game.PelinToiminta.PelinTiedot;
  * @author Tommi
  */
 public class NappaintenVaihtoValikko extends javax.swing.JFrame {
-    
+
     private PelinTiedot pelinTiedot;
 
     /**
@@ -26,10 +25,7 @@ public class NappaintenVaihtoValikko extends javax.swing.JFrame {
         this.pelinTiedot = pelinTiedot;
         initComponents();
         nappaimet();
-        oikeaPelaajaAlas.setText((char) pelinTiedot.getPelaajaKaksi().getAlaNappain() + "");
-        oikeaPelaajaYlos.setText((char) pelinTiedot.getPelaajaKaksi().getYlaNappain() + "");
-        vasenPelaajaAlas.setText((char) pelinTiedot.getPelaajaYksi().getAlaNappain() + "");
-        vasenPelaajaYlos.setText((char) pelinTiedot.getPelaajaYksi().getYlaNappain() + "");
+        nappainTekstit();
     }
 
     /**
@@ -99,7 +95,7 @@ public class NappaintenVaihtoValikko extends javax.swing.JFrame {
             }
         });
 
-        label7.setText("Vain kirjaimet käy");
+        label7.setText("Vain Englannin kielen aakkoset käy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,18 +127,19 @@ public class NappaintenVaihtoValikko extends javax.swing.JFrame {
                             .addComponent(label5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(label4, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(asetukset, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(180, 180, 180)
-                                .addComponent(teksti, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(124, 124, 124)
+                                .addComponent(asetukset, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(157, 157, 157)
-                                .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(180, 180, 180)
+                                .addComponent(teksti, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,11 +193,6 @@ public class NappaintenVaihtoValikko extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public void nappaimet() {
-        oikeaPelaajaAlas.setName("oikeaPelaajaAlas");
-        oikeaPelaajaYlos.setName("oikeaPelaajaYlos");
-        vasenPelaajaYlos.setName("vasenPelaajaYlos");
-        vasenPelaajaAlas.setName("vasenPelaajaAlas");
-        asetukset.setName("asetukset");
         NappaintenVaihto kopioija = new NappaintenVaihto(teksti, this, pelinTiedot);
         asetukset.addActionListener(kopioija);
         oikeaPelaajaAlas.addActionListener(kopioija);
@@ -208,7 +200,6 @@ public class NappaintenVaihtoValikko extends javax.swing.JFrame {
         vasenPelaajaYlos.addActionListener(kopioija);
         vasenPelaajaAlas.addActionListener(kopioija);
         teksti.addActionListener(kopioija);
-        teksti.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -226,4 +217,17 @@ public class NappaintenVaihtoValikko extends javax.swing.JFrame {
     private javax.swing.JButton vasenPelaajaAlas;
     private javax.swing.JButton vasenPelaajaYlos;
     // End of variables declaration//GEN-END:variables
+
+    private void nappainTekstit() {
+        oikeaPelaajaAlas.setName("oikeaPelaajaAlas");
+        oikeaPelaajaYlos.setName("oikeaPelaajaYlos");
+        vasenPelaajaYlos.setName("vasenPelaajaYlos");
+        vasenPelaajaAlas.setName("vasenPelaajaAlas");
+        asetukset.setName("asetukset");
+        oikeaPelaajaAlas.setText((char) pelinTiedot.getPelaajaKaksi().getAlaNappain() + "");
+        oikeaPelaajaYlos.setText((char) pelinTiedot.getPelaajaKaksi().getYlaNappain() + "");
+        vasenPelaajaAlas.setText((char) pelinTiedot.getPelaajaYksi().getAlaNappain() + "");
+        vasenPelaajaYlos.setText((char) pelinTiedot.getPelaajaYksi().getYlaNappain() + "");
+        teksti.setText("");
+    }
 }

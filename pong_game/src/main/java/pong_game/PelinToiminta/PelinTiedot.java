@@ -25,8 +25,8 @@ public class PelinTiedot {
     private boolean ammusPallo;
 
     public PelinTiedot() {
-        peliLaudanKorkeus = 300 * 2;
-        peliLaudanLeveys = 400 * 2;
+        peliLaudanKorkeus = 600;
+        peliLaudanLeveys = 800;
         pistemaara = 5;
         this.pelaajaYksi = new Pelaaja();
         this.pelaajaKaksi = new Pelaaja();

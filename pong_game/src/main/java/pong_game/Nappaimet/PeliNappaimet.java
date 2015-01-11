@@ -60,49 +60,16 @@ public class PeliNappaimet implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         int nappain = e.getKeyCode();
-        if (pelinTiedot.getOnkoToinenPelaaja() == true) {
-            if (nappain == kaksi.getYlaNappain()) {
-
-                if (kaksi.getY() > 0) {
-                    kaksi.setY(kaksi.getY() - kaksi.getNopeus());
-                }
-            }
-            // nappain == KeyEvent.VK_S
-            if (nappain == kaksi.getAlaNappain()) {
-                if (pelinTiedot.getPelilaudanKorkeus() > (kaksi.getY() + kaksi.getkorkeus() / 1.2)) {
-                    kaksi.setY(kaksi.getY() + kaksi.getNopeus());
-                }
-            }
-        }
-        if (nappain == yksi.getYlaNappain()) {
-
-            if (yksi.getY() > 0) {
-                yksi.setY(yksi.getY() - yksi.getNopeus());
-            }
-        }
-        // nappain == KeyEvent.VK_S
-        if (nappain == yksi.getAlaNappain()) {
-            if (pelinTiedot.getPelilaudanKorkeus() > (yksi.getY() + yksi.getkorkeus() / 1.2)) {
-                yksi.setY(yksi.getY() + yksi.getNopeus());
-            }
-        }
+        toinenPelaaja(nappain);
+        ensimmainenPelaaja(nappain);
         if (nappain == VK_P) {
             peli.tauko();
         }
         if (nappain == VK_M) {
-            peli.getPeliAlusta().setVisible(false);
-            peli.tauko();
-            peli = null;
-            pelinTiedot.nollaaPisteet();
-            new Paavalikko(pelinTiedot).setVisible(true);
+            valikko();
         }
         if (nappain == VK_R) {
-            peli.getPeliAlusta().setVisible(false);
-            peli.tauko();
-            peli = null;
-            pelinTiedot.nollaaPisteet();
-            Peli peli = new Peli(pelinTiedot);
-            peli.aloita();
+            uusiPeli();
         }
 
     }
@@ -112,4 +79,48 @@ public class PeliNappaimet implements KeyListener {
 
     }
 
+    private void uusiPeli() {
+        peli.getPeliAlusta().setVisible(false);
+        peli.tauko();
+        peli = null;
+        pelinTiedot.nollaaPisteet();
+        Peli peli = new Peli(pelinTiedot);
+        peli.aloita();
+    }
+
+    private void valikko() {
+        peli.getPeliAlusta().setVisible(false);
+        peli.tauko();
+        peli = null;
+        pelinTiedot.nollaaPisteet();
+        new Paavalikko(pelinTiedot).setVisible(true);
+    }
+
+    private void toinenPelaaja(int nappain) {
+        if (pelinTiedot.getOnkoToinenPelaaja()) {
+            if (nappain == kaksi.getYlaNappain()) {
+                if (kaksi.getY() > 0) {
+                    kaksi.setY(kaksi.getY() - kaksi.getNopeus());
+                }
+                if (nappain == kaksi.getAlaNappain()) {
+                    if (pelinTiedot.getPelilaudanKorkeus() > (kaksi.getY() + kaksi.getkorkeus() / 1.2)) {
+                        kaksi.setY(kaksi.getY() + kaksi.getNopeus());
+                    }
+                }
+            }
+        }
+    }
+
+    private void ensimmainenPelaaja(int nappain) {
+        if (nappain == yksi.getYlaNappain()) {
+            if (yksi.getY() > 0) {
+                yksi.setY(yksi.getY() - yksi.getNopeus());
+            }
+        }
+        if (nappain == yksi.getAlaNappain()) {
+            if (pelinTiedot.getPelilaudanKorkeus() > (yksi.getY() + yksi.getkorkeus() / 1.2)) {
+                yksi.setY(yksi.getY() + yksi.getNopeus());
+            }
+        }
+    }
 }

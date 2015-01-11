@@ -30,6 +30,8 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
     private JTextField pallonNopeusTeksti;
     private JTextField mailanNopeusTeksti;
     private JTextField pistemaaraTeksti;
+    private String x;
+    private String teksti;
 
     /**
      *
@@ -49,7 +51,8 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
         this.yksi = pelinTiedot.getPelaajaKaksi();
         this.kaksi = pelinTiedot.getPelaajaYksi();
         this.pallo = pelinTiedot.getPallo();
-
+        this.x = "";
+        this.teksti = "";
     }
 
     /**
@@ -60,7 +63,67 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String teksti = "";
+        teksti = "";
+        tekstiVaiNappain(ae);
+        if (teksti.equals("Pallon nopeus")) {
+            pallonNopeus();
+        }
+        if (teksti.equals("Mailan nopeus")) {
+            mailanNopeus();
+        }
+        if (teksti.equals("Pistemaara")) {
+            pistemaara();
+        }
+
+        if (teksti.equals("Lopeta")) {
+            System.exit(0);
+        }
+        if (teksti.equals("Palaa päävalikkoon")) {
+            palaaPaavalikkoon();
+        }
+        if (teksti.equals("Nappaimet")) {
+            nappaimet();
+        }
+
+    }
+
+    private void nappaimet() {
+        valikko.setVisible(false);
+        NappaintenVaihtoValikko x = new NappaintenVaihtoValikko(pelinTiedot);
+        x.setVisible(true);
+    }
+
+    private void pistemaara() {
+        if (pistemaaraTeksti.getText().matches("[0-9]+") && pistemaaraTeksti.getText().length() > 1) {
+            x = pistemaaraTeksti.getText();
+            int maara = Integer.parseInt(x);
+            pelinTiedot.setPistemaara(maara);
+        }
+    }
+
+    private void mailanNopeus() {
+        if (mailanNopeusTeksti.getText().matches("[0-9]+") && mailanNopeusTeksti.getText().length() > 1) {
+            x = mailanNopeusTeksti.getText();
+            int maara = Integer.parseInt(x);
+            yksi.setNopeus(maara);
+            kaksi.setNopeus(maara);
+        }
+    }
+
+    private void pallonNopeus() {
+        if (pallonNopeusTeksti.getText().matches("[0-9]+") && pallonNopeusTeksti.getText().length() > 1) {
+            x = pallonNopeusTeksti.getText();
+            int maara = Integer.parseInt(x);
+            pallo.setNopeus(maara);
+        }
+    }
+
+    private void palaaPaavalikkoon() {
+        valikko.setVisible(false);
+        new Paavalikko(pelinTiedot).setVisible(true);
+    }
+
+    private String tekstiVaiNappain(ActionEvent ae) {
         JButton jj = null;
         JTextField j = null;
         if (ae.getSource() instanceof JButton) {
@@ -71,38 +134,7 @@ public class KlikkaustenKuuntelijaAsetukset implements ActionListener {
             j = (JTextField) ae.getSource();
             teksti = j.getText();
         }
-        if (teksti.equals("Palaa päävalikkoon")) {
-            valikko.setVisible(false);
-            new Paavalikko(pelinTiedot).setVisible(true);
-        }
-        if (teksti.equals("Pallon nopeus")) {
-            String x = pallonNopeusTeksti.getText();
-            int maara = Integer.parseInt(x);
-            pallo.setNopeus(maara);
-            int maara2 = pallo.getNopeusX();
-        }
-        if (teksti.equals("Mailan nopeus")) {
-            String x = mailanNopeusTeksti.getText();
-            int maara = Integer.parseInt(x);
-            yksi.setNopeus(maara);
-            kaksi.setNopeus(maara);
-            int maara2 = pallo.getNopeusX();
-        }
-        if (teksti.equals("Pistemaara")) {
-            String x = pistemaaraTeksti.getText();
-            int maara = Integer.parseInt(x);
-            pelinTiedot.setPistemaara(maara);
-            int maara2 = pelinTiedot.getPelinPisteet();
-        }
-
-        if (teksti.equals("Lopeta")) {
-            System.exit(0);
-
-        }
-        if (teksti.equals("Nappaimet")) {
-            valikko.setVisible(false);
-            NappaintenVaihtoValikko x = new NappaintenVaihtoValikko(pelinTiedot);
-            x.setVisible(true);
-        }
+        return teksti;
     }
+
 }

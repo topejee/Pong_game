@@ -1,5 +1,9 @@
 package pong_game.Valikkot;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import pong_game.Nappaimet.KlikkaustenKuuntelija;
 import pong_game.PelinToiminta.PelinTiedot;
 
@@ -57,8 +61,13 @@ public class Paavalikko extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tommi\\Desktop\\pong_game_menu.png")); // NOI18N
         jLabel1.setText("jLabel1");
+        try {
+            BufferedImage kuva = ImageIO.read(getClass().getResourceAsStream("/kuvaa.png"));
+            jLabel1.setIcon(new ImageIcon(kuva));
+        } catch (IOException e) {
+            System.out.println("Ei ollut kuvaa");
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
