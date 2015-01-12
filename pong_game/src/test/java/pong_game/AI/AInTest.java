@@ -67,19 +67,19 @@ public class AInTest {
     @Test
     public void onkoMailaReunallayla() {
         peli.getKaksi().setY(-1000);
-        assertEquals(2, ai.onkoPeliLaudanReunalla());
+        assertEquals(1, ai.onkoPeliLaudanReunalla());
     }
 
     @Test
     public void onkoMailaReunallakeski() {
         peli.getKaksi().setY(50);
-        assertEquals(1, ai.onkoPeliLaudanReunalla());
+        assertEquals(2, ai.onkoPeliLaudanReunalla());
     }
 
     @Test
     public void onkoMailaReunallaala() {
         peli.getKaksi().setY(5000);
-        assertEquals(2, ai.onkoPeliLaudanReunalla());
+        assertEquals(3, ai.onkoPeliLaudanReunalla());
     }
 
     @Test

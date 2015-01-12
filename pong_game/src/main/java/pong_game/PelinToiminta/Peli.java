@@ -69,7 +69,6 @@ public class Peli extends Canvas implements Runnable {
         pelaajaKaksi.setX(pelinTiedot.getPelilaudanLeveys() - pelaajaKaksi.getLeveys());
         pelaajaKaksi.setY(pelinTiedot.getPelilaudanKorkeus() / 2);
         pelinGrafiikka();
-
     }
 
     /**

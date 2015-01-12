@@ -40,11 +40,11 @@ public class AI {
     public void teeSiirto() {
         liikemaaraArvo = liikemaaraRandom.nextInt(10);
         if (ylosVaiAlas()) {
-            if (onkoPeliLaudanReunalla() == 1) {
+            if (onkoPeliLaudanReunalla() == 2) {
                 liiku(mailanNopeus());
             }
         } else {
-            if (onkoPeliLaudanReunalla() == 1) {
+            if (onkoPeliLaudanReunalla() != 1) {
                 liiku(-mailanNopeus());
             }
         }
@@ -71,11 +71,13 @@ public class AI {
      * @return palauttaa totuus arvon
      */
     public int onkoPeliLaudanReunalla() {
-        if ((peli.getPelinTiedot().getPelilaudanKorkeus()) > (peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 1.2) && (peli.getKaksi().getY() > 0)) {
+        System.out.println((peli.getKaksi().getY()));
+        if (79 > (peli.getKaksi().getY() + peli.getKaksi().getkorkeus() / 1.2)) {
             return 1;
-
-        } else {
+        } else if (peli.getKaksi().getY() < 520) {
             return 2;
+        } else {
+            return 3;
         }
 
     }

@@ -74,7 +74,7 @@ public class PeliNappaimet implements KeyListener {
         }
         if (nappain == VK_R) {
             uusiPeli();
-        }
+        } 
 
     }
 
@@ -117,12 +117,13 @@ public class PeliNappaimet implements KeyListener {
                 if (kaksi.getY() > 0) {
                     kaksi.setY(kaksi.getY() - kaksi.getNopeus());
                 }
-                if (nappain == kaksi.getAlaNappain()) {
-                    if (pelinTiedot.getPelilaudanKorkeus() > (kaksi.getY() + kaksi.getkorkeus() / 1.2)) {
-                        kaksi.setY(kaksi.getY() + kaksi.getNopeus());
-                    }
+            }
+            if (nappain == kaksi.getAlaNappain()) {
+                if (pelinTiedot.getPelilaudanKorkeus() > (kaksi.getY() + kaksi.getkorkeus() / 1.2)) {
+                    kaksi.setY(kaksi.getY() + kaksi.getNopeus());
                 }
             }
+
         }
     }
 
